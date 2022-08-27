@@ -54,10 +54,12 @@ categories = {"FOOD" : ["TIM HORTONS", "LE PELE MELE", "LA P'TITE GRENOUILLE", "
 def getName():
     try:
         name = request.form["name"]
+        print("NAME: " + name)
         test.UnitTest().test(name)
+        return name
     except Exception as e:
         print(e)
-    return name
+
 
 
 @app.route("/", methods=["GET"])
@@ -71,7 +73,7 @@ def getFile():
     f.save('temp/' + f.filename)
 
     # call Logan's function (to parse the text file)
-    
+
     # read the returned dict, add the sums of each category and send them to the User's table
     # call the budgetting / investing calulations
     return 'W'

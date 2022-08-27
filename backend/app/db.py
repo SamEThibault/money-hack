@@ -16,3 +16,9 @@ class User(Model):
     age = CharField()
     salary = CharField()
     debt = CharField()
+
+    class Meta:
+        database = db
+
+db.connect()
+db.create_tables([User])

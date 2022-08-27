@@ -1,0 +1,17 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: "Quicksand", sans-serif;
+}
+.app{
+    // display: grid;
+    // grid-template-columns: auto 1fr;
+}
+@import "custom.scss";
+@import "nav.scss";
+@import "dashboard.scss";
+@import "module.scss";
+@import "personalInfo.scss";
+@import "container.scss";

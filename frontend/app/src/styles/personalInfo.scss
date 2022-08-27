@@ -1,0 +1,98 @@
+.personal-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.personal-content {
+  padding: 2rem 0;
+
+  h1 {
+    font-size: 3.5rem;
+  }
+  p {
+    font-size: 1.3rem;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+    background-color: #a50c12;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    padding: 2rem 1rem;
+    color: white;
+  }
+}
+.personal-account {
+  // row-gap: rem;
+}
+.personal {
+  align-items: flex-start;
+  row-gap: 2rem;
+  h2 {
+    font-size: 2.3rem;
+  }
+}
+.personal-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+}
+.info-card {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  width: 100%;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  row-gap: 2rem;
+  box-sizing: border-box;
+  padding: 2rem;
+}
+.personal-account {
+  grid-column: span 3;
+}
+.personal-age,
+.personal-salary,
+.personal-debt {
+  input {
+    width: 60%;
+    height: 50px;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    // box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 3px 0px inset, rgba(0, 0, 0, 0.5) 0px 0px 0px 2px inset;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px inset, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px inset;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
+
+.personal-email,
+.personal-password {
+  width: 70%;
+
+  input {
+    padding-left: 1rem;
+    box-sizing: border-box;
+
+    height: 50px;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    // box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 3px 0px inset, rgba(0, 0, 0, 0.5) 0px 0px 0px 2px inset;
+    text-align: center;
+    text-align: left;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px inset, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px inset;
+    width: 100%;
+  }
+}
+
+.personal-submit {
+  font-size: 2rem;
+  grid-column: span 3;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border: 2px solid #a50c12;
+  background-color: white;
+  color: black;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+}

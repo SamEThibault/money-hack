@@ -1,0 +1,29 @@
+.nav-container {
+  width: clamp(220px, 40vw, 270px);
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  justify-content: space-between;
+}
+.nav-content {
+row-gap: 1rem;
+  h1 {
+    width: 100%;
+  }
+}
+.nav-links {
+  // margin-left: 2rem;
+  width: 80%;
+  a {
+    min-height: 80px;
+    width: 100%;
+    column-gap: 1rem;
+    border-right: 3px solid #ec111a;
+    color: black;
+    text-decoration: none;
+  }
+}

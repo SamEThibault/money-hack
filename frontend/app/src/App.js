@@ -40,10 +40,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/personal-info" element={loginVerify ? (<Personal_Info />) : (<Login />)} />
-          <Route path="/dashboard" element={<Dashboard barData={barData} pieData={pieData} />} />
-          <Route path="/budget" element={<Budget pieData={pieData} />} />
-          <Route path="/investing" element={<Investing />} />
-          <Route path="/spending" element={<Spending barData={barData} />} />
+          <Route path="/dashboard" element={loginVerify ? (<Dashboard barData={barData} pieData={pieData} />) : (<Login />)} />
+          <Route path="/budget" element={loginVerify ? (<Budget pieData={pieData} />) : (<Login />)} />
+          <Route path="/investing" element={loginVerify ? (<Investing />) : (<Login />)} />
+          <Route path="/spending" element={loginVerify ? (<Spending barData={barData} />) : (<Login />)} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/login" element={<Login />} />
         </Routes>

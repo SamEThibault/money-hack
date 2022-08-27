@@ -35,12 +35,12 @@ def sendName():
 
 @app.route("/file", methods=["POST"])
 def getFile():
-    # f = request.files['file']
-    # f.save('temp/' + f.filename)
+    f = request.files['file']
+    f.save('temp/' + f.filename)
+
+    name = request.form.get("name")
 
     # call Logan's function (to parse the text file)
-    #################### find a way to get the name in with the file in the request #####################
-    #################### FIX DATABASE UPDATE QUERY ######################################################
     parse = Parse().parse()
     user = User.update(
         food = parse[0],
@@ -49,25 +49,26 @@ def getFile():
         entertainment = parse[3],
         gas = parse[4],
         rent = parse[5],
-        bills = parse[6]).where(User.username == "bruh")
+        bills = parse[6]).where(User.username == name)
     user.execute()
 
-    user = User.get_or_none(User.username == "bruh")
+    user = User.get_or_none(User.username == name)
+    if user != None:
+        budget = Budget().budget(int(user.salary))
+        discretionary = budget[0]
+        TFSA = budget[1]
+        RRSP = budget[2]
+        leftover = budget[3]
+        tips = budget[4]
 
-    # budget = Budget().budget(int(user.salary))
-    budget = Budget().budget(70000)
-    discretionary = budget[0]
-    TFSA = budget[1]
-    RRSP = budget[2]
-    leftover = budget[3]
-    tips = budget[4]
-
-    res = {"food" : user.food, "groceries" : user.groceries, 
-           "other" : user.other, "entertainment" : user.entertainment,
-           "gas" : user.gas, "rent" : user.rent, "bills" : user.bills,
-           "discretionary" : discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
-           "leftover" : leftover, "tips" : tips}
-    return res
+        res = {"food" : user.food, "groceries" : user.groceries, 
+            "other" : user.other, "entertainment" : user.entertainment,
+            "gas" : user.gas, "rent" : user.rent, "bills" : user.bills,
+            "discretionary" : discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
+            "leftover" : leftover, "tips" : tips}
+        return res
+    else:
+        return {"body" : "Error", "status" : 400}
 
 # sign up endpoint: checks to see if name is unique, and adds user to Users table
 @app.route("/signup", methods=["POST"])

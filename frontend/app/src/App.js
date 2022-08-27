@@ -9,6 +9,7 @@ import Investing from "./pages/Investing";
 import Spending from "./pages/Spending";
 import Login from "./pages/Login";
 import { useSelector, useDispatch } from "react-redux";
+// yo
 
 function App() {
   const labels = ["Bills", "Other", "Entertainment", "Food", "Gas", "Groceries", "Rent"];

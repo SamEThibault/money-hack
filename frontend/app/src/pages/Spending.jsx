@@ -16,9 +16,11 @@ function Spending({ barData }) {
         <h1>Spending</h1>
         <div className="spending-content">
           <div className="spending-tips row-fs-c">
+          <h2>
             {
               statementInfo.spendingMessage
             }
+            </h2>
           </div>
           <div className="spending-chart-container col-c-c">
             <h2>Spending Categories</h2>

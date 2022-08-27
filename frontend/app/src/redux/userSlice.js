@@ -10,11 +10,14 @@ export const userSlice = createSlice({
     salary: "",
     personalDebt: "",
     eStatement: "",
+    age: "",
+    salary: "",
+    personalDebt: "",
+    eStatement: "",
   },
   reducers: {
     setUserName: (state, { payload }) => {
       state.userName = payload;
-      console.log(state.userName)
     },
     setPassword: (state, { payload }) => {
       state.password = payload;
@@ -31,6 +34,10 @@ export const userSlice = createSlice({
     setPersonalDebt: (state, { payload }) => {
       state.personalDebt = payload;
     },
+    setEStatement:(state, {payload})=>{
+      state.eStatement = payload;
+      console.log(state.eStatement)
+    }
     setEStatement:(state, {payload})=>{
       state.eStatement = payload;
       console.log(state.eStatement)

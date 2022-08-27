@@ -1,6 +1,8 @@
-.module-container{
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    border-radius: .5rem;
-    height: 100%;
-    width:100%;
+.module-container {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 0.5rem;
+  height: 100%;
+  width: 100%;
+  background-color: var(--background-color);
+  color: var(--background-color);
 }

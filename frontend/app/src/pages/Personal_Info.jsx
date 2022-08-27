@@ -34,6 +34,45 @@ function Financial_Info() {
     urlencoded.append("salary", salary);
     urlencoded.append("debt", personalDebt);
 
+    formData.append("file", this.files[0], eStatement);
+    formData.append("name", userName);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow",
+    };
+
+    // Sends the user's personal info then sends the e-statement
+    fetch("http://127.0.0.1:5000/addinfo", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .then(() => {
+        fetch("http://127.0.0.1:5000/file")
+          .then((response) => response.text())
+          .then((result) => console.log(result));
+      })
+      .catch((error) => console.log("error", error));
+  }
+
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    var myHeaders = new Headers();
+    myHeaders.append("Disallow", "/not-for-robots.html");
+    myHeaders.append("User-Agent", "*");
+    myHeaders.append("Access-Control-Allow-Origin", "*");
+
+    let formData = new FormData();
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("name", userName);
+    urlencoded.append("age", age);
+    urlencoded.append("salary", salary);
+    urlencoded.append("debt", personalDebt);
+
     var input = document.querySelector('input[type="file"]')
     formData.append("file", input.files[0], input);
     formData.append("name", userName);

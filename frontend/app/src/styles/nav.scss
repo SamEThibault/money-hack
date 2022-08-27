@@ -8,6 +8,7 @@
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   justify-content: space-between;
+  background-color: --bg-color;
 }
 .nav-content {
 row-gap: 1rem;
@@ -23,7 +24,7 @@ row-gap: 1rem;
     width: 100%;
     column-gap: 1rem;
     border-right: 3px solid #ec111a;
-    color: black;
+    color: --color;
     text-decoration: none;
   }
 }

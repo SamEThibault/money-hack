@@ -3,8 +3,11 @@ import { BiBullseye } from "react-icons/bi";
 import Container from "../components/Container";
 import Nav from "./Nav";
 import { Pie } from "react-chartjs-2";
+import { useSelector, useDispatch } from "react-redux";
+import { setSalary } from "../redux/userSlice";
 
 function Budget({ pieData }) {
+  const { statementInfo, salary } = useSelector(({ user }) => user);
   return (
     <div className="budget-container">
       <Nav />
@@ -13,8 +16,8 @@ function Budget({ pieData }) {
 
         <div className="budget-content">
           <div className="budget-tips row-fs-c">
-            {[1, 2, 3, 4, 5].map(() => (
-              <div className="budget-tip">HI</div>
+            {statementInfo.tips.Budget.map((tip) => (
+              <div className="budget-tip">{tip}</div>
             ))}
           </div>
           <div className="budget-pie-container row-c-c">
@@ -22,7 +25,10 @@ function Budget({ pieData }) {
               <Pie data={pieData} />
             </div>
           </div>
-          <div className="budget-salary">Salary</div>
+          <div className="budget-salary">Salary
+            <h2>{salary}</h2>
+          </div>
+          
           <div className="budget-expenses">Expenses</div>
         </div>
       </Container>

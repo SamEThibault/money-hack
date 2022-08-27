@@ -101,12 +101,16 @@ function Financial_Info() {
       .then((response) => response.text())
       .then((result) => console.log(result))
       .then(() => {
-        fetch("http://127.0.0.1:5000/file", requestOptionsFile)
-          .then((response) => response.text())
-          .then((result) => console.log(result));
+            fetch("http://127.0.0.1:5000/file", requestOptionsFile)
+          .then((response) => 
+            response.json())
+          .then((result) => {
+            dispatch(setStatementInfo(result))
+          });
       })
       .catch((error) => console.log("error", error));
   }
+
   const deleteFile = () => {
     let file = document.getElementById("statement");
     file.value = "";

@@ -108,8 +108,11 @@ def signin():
 def addInfo():
     name = request.form["name"]
 
-    user = User.get_or_none(User.username == name)
-    user.age == request.form["age"]
-    user.salary == request.form["salary"]
-    user.debt == request.form["debt"]
+    user = User.update(
+        age = request.form["age"],
+        salary = request.form["salary"],
+        debt = request.form["debt"]
+    ).where(User.username == name)
+    user.execute()
+
     return {"body" : "Information updated.", "status" : 200}

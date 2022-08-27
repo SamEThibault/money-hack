@@ -3,13 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
   name: "user",
   initialState: {
-    email: "",
+    userName: "",
     password: "",
     confirmPassword: "",
+    age: "",
+    salary: "",
+    personalDebt: "",
   },
   reducers: {
-    setEmail: (state, { payload }) => {
-      state.email = payload;
+    setUserName: (state, { payload }) => {
+      state.userName = payload;
     },
     setPassword: (state, { payload }) => {
       state.password = payload;
@@ -24,12 +27,12 @@ export const userSlice = createSlice({
       state.salary = payload;
     },
     setPersonalDebt: (state, { payload }) => {
-      state.setPersonalDebt = payload;
+      state.personalDebt = payload;
     },
   },
 });
 
 //Action creators are generated for each case reducer function
-export const { setEmail, setPassword, setConfirmPassword, setAge, setSalary, setPersonalDebt } =
+export const { setUserName, setPassword, setConfirmPassword, setAge, setSalary, setPersonalDebt } =
   userSlice.actions;
 export default userSlice.reducer;

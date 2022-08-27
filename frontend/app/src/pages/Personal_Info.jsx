@@ -5,15 +5,43 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setAge,
   setConfirmPassword,
-  setEmail,
+  setUserName,
   setPassword,
   setPersonalDebt,
   setSalary,
 } from "../redux/userSlice";
 import { numbersOnly } from "../utils/formValidation";
 function Financial_Info() {
-  const { email, password, confirmPassword, age, personalDebt, salary } = useSelector(({ user }) => user);
+  const { userName, password, confirmPassword, age, personalDebt, salary } = useSelector(({ user }) => user);
   const dispatch = useDispatch();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    var myHeaders = new Headers();
+    myHeaders.append("Disallow", "/not-for-robots.html");
+    myHeaders.append("User-Agent", "*");
+    myHeaders.append("Access-Control-Allow-Origin", "*");
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("name", userName);
+    urlencoded.append("age", age);
+    urlencoded.append("salary", salary);
+    urlencoded.append("debt", personalDebt);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow",
+    };
+
+    fetch("http://127.0.0.1:5000", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  }
+
   return (
     <div className="personal-container">
       <Nav />
@@ -25,17 +53,17 @@ function Financial_Info() {
             To get started using our finance literacy app, please fill in the following information to allow
             the application to run your data through the financial analysis algorithm.
           </p>
-          <div className="personal-inputs full-w">
-            <div className="info-card personal-account">
-              <h2>Account Registration</h2>
-              <div className="personal-email">
+          <form className="personal-inputs full-w" onSubmit={handleSubmit}>
+            {/* <div className="info-card personal-account"> */}
+            {/* <h2>Account Registration</h2> */}
+            {/* <div className="personal-userName">
                 <label className="col-c-fs">
-                  <span>Email</span>
+                  <span>userName</span>
                   <input
                     type="text"
-                    value={email}
+                    value={userName}
                     onChange={(e) => {
-                      dispatch(setEmail(e.target.value));
+                      dispatch(setUserName(e.target.value));
                     }}
                   />
                 </label>
@@ -52,8 +80,8 @@ function Financial_Info() {
                     }}
                   />
                 </label>
-              </div>
-              <div className="personal-password">
+              </div> */}
+            {/* <div className="personal-password">
                 <label className="col-c-fs">
                   <span>Confirm Password</span>
                   <input
@@ -64,8 +92,8 @@ function Financial_Info() {
                     }}
                   />
                 </label>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
             <div className="info-card personal-age">
               <h2>Age</h2>
               <input
@@ -96,8 +124,10 @@ function Financial_Info() {
                 }}
               />
             </div>
-            <button className="personal-submit">Submit</button>
-          </div>
+            <button className="personal-submit" onClick={handleSubmit}>
+              Submit
+            </button>
+          </form>
         </Container>
       </div>
     </div>

@@ -8,30 +8,78 @@ import { Link } from "react-router-dom";
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { Pie } from "react-chartjs-2";
+import { motion } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import { setIsLightMode } from "../redux/userSlice";
 function Dashboard({ pieData, barData }) {
-
+  const dispatch = useDispatch();
+  const { isLightMode, statementInfo } = useSelector(({ user }) => user);
+  const toggleVariants = {
+    hidden: {
+      left: "0.45rem",
+      right: "auto",
+    },
+    visible: {
+      right: "0.45rem",
+      left: "auto",
+    },
+  };
+  const iconVariants = {
+    hidden: {
+      color: "white",
+      transition: {
+        delay: 0.2,
+      },
+    },
+    visible: {
+      color: "black",
+      transition: {
+        delay: 0.2,
+      },
+    },
+  };
   return (
     <div className="dashboard-container">
       <Nav />
       <div className="dashboard-content">
         {/* DASHBOARD HEADER */}
-        <div className="dashboard-header">
+        <div className="dashboard-header row-sb-c">
           <h1>Dashboard</h1>
-          <div className="dashboard-controls row-se-c">
-            <div className="dashboard-speech">
+          <div className="dashboard-controls row-fe-c">
+            <div className="dashboard-speech row-c-c">
               <AiOutlineSound />
             </div>
-            <div className="dashboard-notifications">
-              <IoMdNotificationsOutline />
-            </div>
-            <div className="dashboard-display-mode row-sb-c">
-              <div className="dashboard-display-toggle"></div>
-              <div className="dashboard-light-mode row-c-c">
+            <div
+              className="dashboard-display-mode row-sb-c"
+              onClick={() => {
+                dispatch(setIsLightMode(!isLightMode));
+              }}
+              style={{
+                background: isLightMode ? "#8cccab" : "#293241",
+              }}
+            >
+              <motion.div
+                className="dashboard-display-toggle"
+                variants={toggleVariants}
+                animate={isLightMode ? "visible" : "hidden"}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              ></motion.div>
+              <motion.div
+                className="dashboard-light-mode row-c-c"
+                variants={iconVariants}
+                animate={isLightMode ? "hidden" : "visble"}
+                initial={isLightMode ? "hidden" : "visble"}
+              >
                 <MdOutlineWbSunny />
-              </div>
-              <div className="dashboard-dark-mode row-c-c">
+              </motion.div>
+              <motion.div
+                className="dashboard-dark-mode row-c-c"
+                variants={iconVariants}
+                animate={isLightMode ? "visible" : "hidden"}
+                initial={isLightMode ? "visible" : "hidden"}
+              >
                 <MdOutlineModeNight />
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -72,9 +120,11 @@ function Dashboard({ pieData, barData }) {
           </Module>
         </Link>
         <Link to={"/budget"} className={`graph-container`}>
-          <Module classProp="full-h-w">{["Tips", "dsafjkl", "hdsfjkalf"].map((tip)=>(
-            <p>{tip}</p>
-          ))}</Module>
+          <Module classProp="full-h-w">
+            {["Tips", "dsafjkl", "hdsfjkalf"].map((tip) => (
+              <p>{tip}</p>
+            ))}
+          </Module>
         </Link>
       </div>
     </div>

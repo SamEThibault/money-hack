@@ -3,11 +3,55 @@
   grid-template-columns: auto 1fr;
   height: 100vh;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-color);
 }
 .dashboard-header {
   grid-column: span 4;
-  .dashboard-controls {
+  h1 {
+    padding-top: 2rem;
   }
+  .dashboard-controls {
+    column-gap: 3rem;
+  }
+  .dashboard-speech {
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--color);
+  }
+}
+.dashboard-display-mode {
+  // border:solid 1px black;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 0.5rem 1rem;
+  min-width: 70px;
+  min-height: 35px;
+  position: relative;
+  border-radius: 5rem;
+  cursor: pointer;
+  // background-color: #293241;
+  // background-color: #8cccab;
+}
+.dashboard-display-toggle {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 0.45rem;
+  border-radius: 50%;
+  border: 1px solid hsla(0, 0%, 58%, 0.74);
+  content: " ";
+  display: flex;
+  background-color: white;
+  z-index: 2;
+}
+.dashboard-light-mode {
+  // color: var(--color);
+  font-size: 1.3rem;
+}
+.dashboard-dark-mode {
+  @extend .dashboard-light-mode;
+
 }
 
 .dashboard-content {
@@ -16,8 +60,9 @@
   h1 {
     color: #ec111a;
   }
-  h3  {
+  h3 {
     text-align: center;
+    color: var(--color);
   }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -25,7 +70,7 @@
   grid-gap: 1.5rem;
   margin: 0 1.5rem;
 }
-.budgetinginging-container {
+.budgeting-container {
   grid-row: span 2;
   grid-column: span 2;
 }
@@ -43,39 +88,5 @@
   grid-row: span 2;
   .dashboard-pie {
     width: 65%;
-    // width:100%;
   }
-}
-
-.dashboard-display-mode {
-  // border:solid 1px black;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding: 0.5rem 1rem;
-  min-width: 70px;
-  min-height: 35px;
-  position: relative;
-  border-radius: 5rem;
-  cursor: pointer;
-  background-color: #293241;
-  background-color: #4c956c;
-  background-color: #59cd90;
-}
-.dashboard-display-toggle {
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  right: 0.45rem;
-  border-radius: 50%;
-  border: 1px solid hsla(0, 0%, 58%, 0.74);
-  content: " ";
-  display: flex;
-  background-color: white;
-  z-index: 2;
-}
-.dashboard-light-mode {
-  color: black;
-  font-size: 1.3rem;
-}
-.dashboard-dark-mode {
-  @extend .dashboard-light-mode;
 }

@@ -9,22 +9,45 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   justify-content: space-between;
   background-color: --bg-color;
+  position: relative;
 }
 .nav-content {
-row-gap: 1rem;
+  padding-top: 2rem;
+  row-gap: 1rem;
   h1 {
-    width: 100%;
+    width: 80%;
+    color: #ec111a;
   }
 }
 .nav-links {
-  // margin-left: 2rem;
-  width: 80%;
+  width: 100%;
   a {
     min-height: 80px;
     width: 100%;
     column-gap: 1rem;
-    border-right: 3px solid #ec111a;
+    // border-right: 3px solid #ec111a;
     color: --color;
     text-decoration: none;
   }
+  p {
+    font-size: 1.2rem;
+  }
 }
+.personal-link {
+  position: relative;
+  // background-image: linear-gradient(to right, white, rgba(0,0,0,.01));
+  padding-left: 2rem;
+  box-sizing: border-box;
+}
+.active-link {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.nav-underline {
+  width: 4px;
+  height: 100%;
+  position: absolute;
+  border-radius: .5rem;
+  right: 0;
+  background-color: #ec111a;
+}
+

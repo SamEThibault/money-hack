@@ -10,13 +10,18 @@ import {
   setPersonalDebt,
   setSalary,
   setEStatement,
+  setStatementInfo,
 } from "../redux/userSlice";
 import { numbersOnly } from "../utils/formValidation";
+import dummy from "../data/dummy.json"
 function Financial_Info() {
   const { userName, password, confirmPassword, age, personalDebt, salary, eStatement } = useSelector(
     ({ user }) => user
   );
   const dispatch = useDispatch();
+
+  console.log(dummy);  
+  dispatch(setStatementInfo(dummy));
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -56,7 +61,6 @@ function Financial_Info() {
       .catch((error) => console.log("error", error));
   }
 
-
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -89,7 +93,7 @@ function Financial_Info() {
       headers: myHeaders,
       body: formData,
       redirect: "follow",
-    }
+    };
 
     // Sends the user's personal info then sends the e-statement
     fetch("http://127.0.0.1:5000/addinfo", requestOptionsAddInfo)
@@ -102,6 +106,11 @@ function Financial_Info() {
       })
       .catch((error) => console.log("error", error));
   }
+  const deleteFile = () => {
+    let file = document.getElementById("statement");
+    file.value = "";
+    dispatch(setEStatement(""));
+  };
 
   return (
     <div className="personal-container">
@@ -120,6 +129,7 @@ function Financial_Info() {
               <input 
                 type="text"
                 value={age}
+                placeholder={"0-100"}
                 onChange={(e) => {
                   dispatch(setAge(numbersOnly(e.target.value)));
                 }}
@@ -129,6 +139,7 @@ function Financial_Info() {
               <h2>Salary</h2>
               <input
                 type="text"
+                placeholder={"$0.00"}
                 value={salary}
                 onChange={(e) => {
                   dispatch(setSalary(numbersOnly(e.target.value)));
@@ -140,6 +151,7 @@ function Financial_Info() {
               <input
                 type="text"
                 id = "file"
+                placeholder={"$0.00"}
                 value={personalDebt}
                 onChange={(e) => {
                   dispatch(setPersonalDebt(numbersOnly(e.target.value)));
@@ -148,17 +160,30 @@ function Financial_Info() {
             </div>
             <div className="info-card personal-e-statment">
               <h2>Monthly E-Statement</h2>
-              <label
-              className="col-c-c"
-              >
+              <label className="col-c-c">
                 <span>Select File</span>
                 <input
+                  id="statement"
                   type="file"
                   onChange={(e) => {
                     dispatch(setEStatement(e.target.value));
                   }}
                 />
               </label>
+              <div className="personal-file row-c-c">
+                {eStatement && (
+                  <>
+                    <h3>{eStatement}</h3>
+                    <button
+                      onClick={() => {
+                        deleteFile();
+                      }}
+                    >
+                      X
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
             <button className="personal-submit" onClick={handleSubmit}>
               Submit

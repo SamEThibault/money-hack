@@ -9,7 +9,8 @@ function Spending({ barData }) {
   return (
     <div className="spending-container">
       <Nav />
-      <Container classProp={"spending row-c-c"}>
+      <Container classProp={"spending col-c-fs"}>
+        <h1>Spending</h1>
         <div className="spending-content">
           <div className="spending-tips row-fs-c">
             {[1, 2, 3, 4, 5].map(() => (

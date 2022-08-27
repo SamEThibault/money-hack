@@ -3,12 +3,18 @@
   grid-template-columns: auto 1fr;
 }
 .investing {
+  justify-content: flex-start;
+  row-gap: 2rem;
+  .investing-title {
+    padding-top: 2rem;
+    color: var(--rcolor);
+  }
 }
 .investing-content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  height: 90%;
+  height: 82%;
   width: 100%;
   grid-gap: 2rem;
 }

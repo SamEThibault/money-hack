@@ -56,6 +56,53 @@ function Financial_Info() {
       .catch((error) => console.log("error", error));
   }
 
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    var myHeaders = new Headers();
+    myHeaders.append("Disallow", "/not-for-robots.html");
+    myHeaders.append("User-Agent", "*");
+    myHeaders.append("Access-Control-Allow-Origin", "*");
+
+    let formData = new FormData();
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("name", userName);
+    urlencoded.append("age", age);
+    urlencoded.append("salary", salary);
+    urlencoded.append("debt", personalDebt);
+
+    var input = document.querySelector('input[type="file"]')
+    formData.append("file", input.files[0], input);
+    formData.append("name", userName);
+
+    var requestOptionsAddInfo = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow",
+    };
+
+    var requestOptionsFile = {
+      method: "POST",
+      headers: myHeaders,
+      body: formData,
+      redirect: "follow",
+    }
+
+    // Sends the user's personal info then sends the e-statement
+    fetch("http://127.0.0.1:5000/addinfo", requestOptionsAddInfo)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .then(() => {
+        fetch("http://127.0.0.1:5000/file", requestOptionsFile)
+          .then((response) => response.text())
+          .then((result) => console.log(result));
+      })
+      .catch((error) => console.log("error", error));
+  }
+
   return (
     <div className="personal-container">
       <Nav />

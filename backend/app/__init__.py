@@ -11,7 +11,6 @@ from app.budget import Budget
 load_dotenv()
 app = Flask(__name__)
 CORS(app)
-global_name = ""
 
 categories = {"FOOD" : ["TIM HORTONS", "LE PELE MELE", "LA P'TITE GRENOUILLE", "MAC'S SUSHI", "Shawarma Palace Rideau", "A&W", "CAGE GATINEAU", "STARBUCKS COFFEE"],
              "GROCERIES" : ["DOLLARAMA", "WAL-MART SUPERCENTER", "RUSSELL FOODLAND"], 
@@ -39,34 +38,37 @@ def getFile():
     f = request.files['file']
     f.save('temp/' + f.filename)
 
+    name = request.form.get("name")
+    print(name)
     # call Logan's function (to parse the text file)
-    name = global_name
-    user = User.get_or_none(User.username == name)
-
-    # budget = Budget().budget(int(user.salary))
-    budget = Budget().budget(70000)
-    discretionary = budget[0]
-    TFSA = budget[1]
-    RRSP = budget[2]
-    leftover = budget[3]
-    tips = budget[4]
-
     parse = Parse().parse()
-    user.food = parse[0]
-    user.groceries = parse[1]
-    user.other= parse[2]
-    user.entertainment = parse[3]
-    user.gas = parse[4]
-    user.rent = parse[5]
-    user.bills = parse[6]
+    user = User.update(
+        food = parse[0],
+        groceries = parse[1],
+        other= parse[2],
+        entertainment = parse[3],
+        gas = parse[4],
+        rent = parse[5],
+        bills = parse[6]).where(User.username == name)
+    user.execute()
 
-    res = {"food" : user.food, "groceries" : user.groceries, 
-           "other" : user.other, "entertainment" : user.entertainment,
-           "gas" : user.gas, "rent" : user.rent, "bills" : user.bills,
-           "discretionary" : discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
-           "leftover" : leftover, "tips" : tips}
-    return res
+    user = User.get_or_none(User.username == name)
+    if user != None:
+        budget = Budget().budget(int(user.salary))
+        discretionary = budget[0]
+        TFSA = budget[1]
+        RRSP = budget[2]
+        leftover = budget[3]
+        tips = budget[4]
 
+        res = {"food" : user.food, "groceries" : user.groceries, 
+            "other" : user.other, "entertainment" : user.entertainment,
+            "gas" : user.gas, "rent" : user.rent, "bills" : user.bills,
+            "discretionary" : discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
+            "leftover" : leftover, "tips" : tips}
+        return res
+    else:
+        return {"body" : "Error", "status" : 400}
 
 # sign up endpoint: checks to see if name is unique, and adds user to Users table
 @app.route("/signup", methods=["POST"])
@@ -74,7 +76,6 @@ def signup():
     try:
         print(request)
         name = request.form["name"]
-        global_name = name
         password = request.form["password"]
     except Exception as e:
         print(e)
@@ -91,7 +92,6 @@ def signup():
 @app.route("/signin", methods=["POST"])
 def signin():
     name = request.form["name"]
-    global_name = name
     password = request.form["password"]
     user = User.get_or_none(User.username == name)
 
@@ -107,9 +107,12 @@ def signin():
 @app.route("/addinfo", methods=["POST"])
 def addInfo():
     name = request.form["name"]
+    print("ADD INFO NAME: " + name)
+    user = User.update(
+        age = request.form["age"],
+        salary = request.form["salary"],
+        debt = request.form["debt"]
+    ).where(User.username == name)
+    user.execute()
 
-    user = User.get_or_none(User.username == name)
-    user.age == request.form["age"]
-    user.salary == request.form["salary"]
-    user.debt == request.form["debt"]
     return {"body" : "Information updated.", "status" : 200}

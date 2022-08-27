@@ -58,7 +58,7 @@ class Budget():
     def DEBT(self, debt, savings):
         if debt > 0:
             #USE ALL SAVINGS MONEY FOR DEBT!!!
-            DEBT = savings - 100
+            DEBT = savings - 150
         else:
             DEBT = 0
         return DEBT

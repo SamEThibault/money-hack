@@ -20,7 +20,7 @@ class InvestInfo():
             'Debt-Snowball': ['The debt snowball method is a debt-reduction strategy where you pay off debt in order of smallest to largest, gaining momentum as you knock out each remaining balance.',
                              ['List your debts from smallest to largest regardless of interest rate', 'Make minimum payments on all your debts except the smallest',
                                     'Pay as much as possible on your smallest debt', 'Repeat until each debt is paid in full']],
-            'MONEYHACK': ['Consider committing tax fraud', 'Get another job', 'Get promoted', 'Steal from your family (Don\'t get caught)']
+            'MONEYHACK': ['Consider committing tax fraud!', 'Get another job', 'Get promoted', 'Steal from your family (Don\'t get caught)']
             }
         return tips
 
@@ -41,6 +41,6 @@ class InvestInfo():
             'Debt-Snowball': ['The debt snowball method is a debt-reduction strategy where you pay off debt in order of smallest to largest, gaining momentum as you knock out each remaining balance.',
                              ['List your debts from smallest to largest regardless of interest rate', 'Make minimum payments on all your debts except the smallest',
                                     'Pay as much as possible on your smallest debt', 'Repeat until each debt is paid in full']],
-            'MONEYHACK': ['Consider committing tax fraud', 'Get another job', 'Get promoted', 'Steal from your family (Don\'t get caught)']
+            'MONEYHACK': ['Consider committing tax fraud!', 'Get another job', 'Get promoted', 'Steal from your family (Don\'t get caught)']
             }
         return tips

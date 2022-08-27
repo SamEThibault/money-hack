@@ -25,8 +25,12 @@ def sendName():
     return {"name": "bozo cheese"}
 
 
-
-
+@app.route("/file", methods=["POST"])
+def getFile():
+    f = request.files['file']
+    f.save('temp/' + f.filename)
+    return 'W'
+    
 # var myHeaders = new Headers();
 # myHeaders.append("Disallow", "/not-for-robots.html");
 # myHeaders.append("User-Agent", "*");

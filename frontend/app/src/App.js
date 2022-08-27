@@ -78,6 +78,12 @@ function App() {
           </label>
         </form>
 
+        <form action = "http://127.0.0.1:5000/file" method = "POST" 
+         enctype = "multipart/form-data">
+         <input type = "file" name = "file" />
+         <input type = "submit"/>
+        </form> 
+
         <button onClick={retrieveData}>Default</button>
       </header>
     </div>

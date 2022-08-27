@@ -9,20 +9,16 @@ import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { Pie } from "react-chartjs-2";
 function Dashboard({ pieData, barData }) {
-
   return (
     <div className="dashboard-container">
       <Nav />
       <div className="dashboard-content">
         {/* DASHBOARD HEADER */}
-        <div className="dashboard-header">
+        <div className="dashboard-header row-sb-c">
           <h1>Dashboard</h1>
-          <div className="dashboard-controls row-se-c">
-            <div className="dashboard-speech">
+          <div className="dashboard-controls row-fe-c">
+            <div className="dashboard-speech row-c-c">
               <AiOutlineSound />
-            </div>
-            <div className="dashboard-notifications">
-              <IoMdNotificationsOutline />
             </div>
             <div className="dashboard-display-mode row-sb-c">
               <div className="dashboard-display-toggle"></div>
@@ -72,9 +68,11 @@ function Dashboard({ pieData, barData }) {
           </Module>
         </Link>
         <Link to={"/budget"} className={`graph-container`}>
-          <Module classProp="full-h-w">{["Tips", "dsafjkl", "hdsfjkalf"].map((tip)=>(
-            <p>{tip}</p>
-          ))}</Module>
+          <Module classProp="full-h-w">
+            {["Tips", "dsafjkl", "hdsfjkalf"].map((tip) => (
+              <p>{tip}</p>
+            ))}
+          </Module>
         </Link>
       </div>
     </div>

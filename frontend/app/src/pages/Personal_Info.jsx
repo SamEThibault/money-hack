@@ -56,7 +56,6 @@ function Financial_Info() {
       .catch((error) => console.log("error", error));
   }
 
-
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -73,7 +72,7 @@ function Financial_Info() {
     urlencoded.append("salary", salary);
     urlencoded.append("debt", personalDebt);
 
-    var input = document.querySelector('input[type="file"]')
+    var input = document.querySelector('input[type="file"]');
     formData.append("file", input.files[0], input);
     formData.append("name", userName);
 
@@ -89,7 +88,7 @@ function Financial_Info() {
       headers: myHeaders,
       body: formData,
       redirect: "follow",
-    }
+    };
 
     // Sends the user's personal info then sends the e-statement
     fetch("http://127.0.0.1:5000/addinfo", requestOptionsAddInfo)
@@ -102,6 +101,12 @@ function Financial_Info() {
       })
       .catch((error) => console.log("error", error));
   }
+  const deleteFile = () => {
+    let file = document.getElementById("statement");
+    console.log(file);
+    file.value = "";
+    console.log(file);
+  };
 
   return (
     <div className="personal-container">
@@ -120,6 +125,7 @@ function Financial_Info() {
               <input
                 type="text"
                 value={age}
+                placeholder={"0-100"}
                 onChange={(e) => {
                   dispatch(setAge(numbersOnly(e.target.value)));
                 }}
@@ -129,6 +135,7 @@ function Financial_Info() {
               <h2>Salary</h2>
               <input
                 type="text"
+                placeholder={"$0.00"}
                 value={salary}
                 onChange={(e) => {
                   dispatch(setSalary(numbersOnly(e.target.value)));
@@ -139,6 +146,7 @@ function Financial_Info() {
               <h2>Personal Debt</h2>
               <input
                 type="text"
+                placeholder={"$0.00"}
                 value={personalDebt}
                 onChange={(e) => {
                   dispatch(setPersonalDebt(numbersOnly(e.target.value)));
@@ -147,17 +155,26 @@ function Financial_Info() {
             </div>
             <div className="info-card personal-e-statment">
               <h2>Monthly E-Statement</h2>
-              <label
-              className="col-c-c"
-              >
+              <label className="col-c-c">
                 <span>Select File</span>
                 <input
+                  id="statement"
                   type="file"
                   onChange={(e) => {
                     dispatch(setEStatement(e.target.value));
                   }}
                 />
               </label>
+              <div className="personal-file row-c-c">
+                <h3>{eStatement && eStatement}</h3>
+                <button
+                  onClick={() => {
+                    deleteFile();
+                  }}
+                >
+                  X
+                </button>
+              </div>
             </div>
             <button className="personal-submit" onClick={handleSubmit}>
               Submit

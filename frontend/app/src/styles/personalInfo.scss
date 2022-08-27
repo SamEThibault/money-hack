@@ -6,10 +6,11 @@
   padding: 2rem 0;
 
   h1 {
-    font-size: 3.5rem;
+    text-align: center;
+    width: 100%;
   }
   p {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: rgba(0, 0, 0, 0.7);
     font-weight: 500;
     background-color: #a50c12;
@@ -17,22 +18,27 @@
     box-sizing: border-box;
     padding: 2rem 1rem;
     color: white;
+    width: 100%;
   }
 }
 .personal-account {
-  // row-gap: rem;
 }
 .personal {
   align-items: flex-start;
   row-gap: 2rem;
+  width: 60%;
   h2 {
-    font-size: 2.3rem;
+    font-size: 1.5rem;
   }
 }
 .personal-inputs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
+  height: 50%;
+  width: 70%;
+  margin-inline: auto;
+  margin-top: 3rem;
 }
 .info-card {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -94,7 +100,7 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     padding: 1rem 2rem;
     // border:solid 2px #ec111a;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     font-size: 1.4rem;
     cursor: pointer;
   }
@@ -105,9 +111,25 @@
     width: 0;
     height: 0;
   }
+  h3 {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  .personal-file {
+    column-gap: .2rem;
+    button {
+      border: none;
+      background-color: transparent;
+      font-size: 1.2rem;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-family: "Quicksand", sans-serif;
+      font-weight: bold;
+    }
+  }
 }
 .personal-submit {
-  font-size: 2rem;
+  font-size: 1.5rem;
   grid-column: span 3;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   background-color: white;

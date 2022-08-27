@@ -3,6 +3,12 @@
   grid-template-columns: auto 1fr;
 }
 .spending {
+  row-gap: 2rem;
+  justify-content: flex-start;
+  h1 {
+    padding-top: 2rem;
+    color: var(--rcolor);
+  }
 }
 .spending-content {
   display: grid;
@@ -31,6 +37,6 @@
   grid-column: span 2;
   text-align: center;
 }
-.spending-chart{
-    width:80%;
+.spending-chart {
+  width: 60%;
 }

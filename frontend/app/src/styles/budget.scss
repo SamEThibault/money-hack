@@ -3,12 +3,18 @@
   grid-template-columns: auto 1fr;
 }
 .budget {
+  row-gap: 2rem;
+  justify-content: flex-start;
+  h1 {
+    color: var(--rcolor);
+    padding-top: 2rem;
+  }
 }
 .budget-content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  height: 90%;
+  height: 80%;
   width: 100%;
   grid-gap: 2rem;
 }

@@ -8,7 +8,8 @@ function Investing() {
   return (
     <div className="investing-container">
       <Nav />
-      <Container classProp={"investing row-c-c"}>
+      <Container classProp={"investing col-c-fs"}>
+        <h1 className="investing-title">Investing</h1>
         <div className="investing-content">
           <div className="investing-tips row-fs-c">
             {[1, 2, 3, 4, 5].map(() => (

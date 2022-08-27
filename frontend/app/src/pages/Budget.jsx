@@ -4,11 +4,12 @@ import Container from "../components/Container";
 import Nav from "./Nav";
 import { Pie } from "react-chartjs-2";
 
-function Budget({pieData}) {
+function Budget({ pieData }) {
   return (
     <div className="budget-container">
       <Nav />
-      <Container classProp={"budget row-c-c"}>
+      <Container classProp={"budget col-c-fs"}>
+        <h1>Budget</h1>
         <div className="budget-content">
           <div className="budget-tips row-fs-c">
             {[1, 2, 3, 4, 5].map(() => (

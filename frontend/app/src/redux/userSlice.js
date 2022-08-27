@@ -14,6 +14,7 @@ export const userSlice = createSlice({
     salary: "",
     personalDebt: "",
     eStatement: "",
+    navUrl: "",
   },
   reducers: {
     setUserName: (state, { payload }) => {
@@ -44,12 +45,14 @@ export const userSlice = createSlice({
     },
     setEStatement:(state, {payload})=>{
       state.eStatement = payload;
-      console.log(state.eStatement)
+    },
+    setNavUrl:(state,{payload})=>{
+      state.navUrl = payload;
     }
   },
 });
 
 //Action creators are generated for each case reducer function
-export const { setUserName, setPassword, setConfirmPassword, setAge, setSalary, setPersonalDebt, setEStatement} =
+export const { setUserName, setPassword, setConfirmPassword, setAge, setSalary, setPersonalDebt, setEStatement, setNavUrl} =
   userSlice.actions;
 export default userSlice.reducer;

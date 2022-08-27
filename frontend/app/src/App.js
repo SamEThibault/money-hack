@@ -21,13 +21,21 @@ function App() {
         label: "",
         backgroundColor: ["#3d7e8a", "#405f77", "#3d7e8a", "#088985", "#12b296", "#0a5554", "#3d8180"],
         data: [
+          
           statementInfo.bills,
+         
           statementInfo.other,
+         
           statementInfo.entertainment,
+         
           statementInfo.food,
+         
           statementInfo.gas,
+         
           statementInfo.groceries,
+         
           statementInfo.rent,
+        ,
         ],
       },
     ],

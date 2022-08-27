@@ -9,16 +9,19 @@ import Investing from "./pages/Investing";
 import Spending from "./pages/Spending";
 import Login from "./pages/Login";
 import { useSelector, useDispatch } from "react-redux";
+
+
 function App() {
   const labels = ["Bills", "Discretionary", "Entertainment", "Food", "Gas", "Groceries", "Rent"];
-  const {loginVerify} = useSelector(({ user }) => user);
+  const {loginVerify, statementInfo} = useSelector(({ user }) => user);
+ 
   const barData = {
     labels: labels,
     datasets: [
       {
         label: "",
         backgroundColor: ["#3d7e8a", "#405f77", "#3d7e8a", "#088985", "#12b296", "#0a5554", "#3d8180"],
-        data: [],
+        data: [statementInfo.bills, statementInfo.other, statementInfo.entertainment, statementInfo.food, statementInfo.gas, statementInfo.groceries, statementInfo.rent],
       },
     ],
   };
@@ -31,7 +34,7 @@ function App() {
         label: "Budget Categories",
         backgroundColor: ["#8cccab", "#405f77", "#3d7e8a", "#37d4ae"],
         borderColor: "black",
-        data: [10, 10, 5],
+        data: [statementInfo.bills + statementInfo.food + statementInfo.gas + statementInfo.groceries + statementInfo.rent + statementInfo.entertainment, statementInfo.discretionary, (statementInfo.TFSA + statementInfo.RRSP)/12],
       },
     ],
   };

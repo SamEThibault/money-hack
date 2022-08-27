@@ -11,7 +11,6 @@ from app.budget import Budget
 load_dotenv()
 app = Flask(__name__)
 CORS(app)
-global_name = ""
 
 categories = {"FOOD" : ["TIM HORTONS", "LE PELE MELE", "LA P'TITE GRENOUILLE", "MAC'S SUSHI", "Shawarma Palace Rideau", "A&W", "CAGE GATINEAU", "STARBUCKS COFFEE"],
              "GROCERIES" : ["DOLLARAMA", "WAL-MART SUPERCENTER", "RUSSELL FOODLAND"], 
@@ -40,8 +39,8 @@ def getFile():
     f.save('temp/' + f.filename)
 
     # call Logan's function (to parse the text file)
-    name = global_name
-    user = User.get_or_none(User.username == name)
+    #################### find a way to get the name in with the file in the request #####################
+    user = User.get_or_none(User.username == "bruh")
 
     # budget = Budget().budget(int(user.salary))
     budget = Budget().budget(70000)
@@ -52,21 +51,20 @@ def getFile():
     tips = budget[4]
 
     parse = Parse().parse()
-    user.food = parse[0]
-    user.groceries = parse[1]
-    user.other= parse[2]
-    user.entertainment = parse[3]
-    user.gas = parse[4]
-    user.rent = parse[5]
-    user.bills = parse[6]
+    user.food = round(parse[0], 2)
+    user.groceries = round(parse[1], 2)
+    user.other= round(parse[2], 2)
+    user.entertainment = round(parse[3], 2)
+    user.gas = round(parse[4], 2)
+    user.rent = round(parse[5], 2)
+    user.bills = round(parse[6], 2)
 
     res = {"food" : user.food, "groceries" : user.groceries, 
            "other" : user.other, "entertainment" : user.entertainment,
            "gas" : user.gas, "rent" : user.rent, "bills" : user.bills,
-           "discretionary" : discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
+           "discretionary" : user.discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
            "leftover" : leftover, "tips" : tips}
     return res
-
 
 # sign up endpoint: checks to see if name is unique, and adds user to Users table
 @app.route("/signup", methods=["POST"])
@@ -74,7 +72,6 @@ def signup():
     try:
         print(request)
         name = request.form["name"]
-        global_name = name
         password = request.form["password"]
     except Exception as e:
         print(e)
@@ -91,7 +88,6 @@ def signup():
 @app.route("/signin", methods=["POST"])
 def signin():
     name = request.form["name"]
-    global_name = name
     password = request.form["password"]
     user = User.get_or_none(User.username == name)
 

@@ -9,10 +9,13 @@ import {
   setPassword,
   setPersonalDebt,
   setSalary,
+  setEStatement,
 } from "../redux/userSlice";
 import { numbersOnly } from "../utils/formValidation";
 function Financial_Info() {
-  const { userName, password, confirmPassword, age, personalDebt, salary } = useSelector(({ user }) => user);
+  const { userName, password, confirmPassword, age, personalDebt, salary, eStatement } = useSelector(
+    ({ user }) => user
+  );
   const dispatch = useDispatch();
 
   async function handleSubmit(e) {
@@ -23,11 +26,16 @@ function Financial_Info() {
     myHeaders.append("User-Agent", "*");
     myHeaders.append("Access-Control-Allow-Origin", "*");
 
+    let formData = new FormData();
+
     var urlencoded = new URLSearchParams();
     urlencoded.append("name", userName);
     urlencoded.append("age", age);
     urlencoded.append("salary", salary);
     urlencoded.append("debt", personalDebt);
+
+    formData.append("file", this.files[0], eStatement);
+    formData.append("name", userName);
 
     var requestOptions = {
       method: "POST",
@@ -36,9 +44,15 @@ function Financial_Info() {
       redirect: "follow",
     };
 
-    fetch("http://127.0.0.1:5000", requestOptions)
+    // Sends the user's personal info then sends the e-statement
+    fetch("http://127.0.0.1:5000/addinfo", requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
+      .then(() => {
+        fetch("http://127.0.0.1:5000/file")
+          .then((response) => response.text())
+          .then((result) => console.log(result));
+      })
       .catch((error) => console.log("error", error));
   }
 
@@ -54,46 +68,6 @@ function Financial_Info() {
             the application to run your data through the financial analysis algorithm.
           </p>
           <form className="personal-inputs full-w" onSubmit={handleSubmit}>
-            {/* <div className="info-card personal-account"> */}
-            {/* <h2>Account Registration</h2> */}
-            {/* <div className="personal-userName">
-                <label className="col-c-fs">
-                  <span>userName</span>
-                  <input
-                    type="text"
-                    value={userName}
-                    onChange={(e) => {
-                      dispatch(setUserName(e.target.value));
-                    }}
-                  />
-                </label>
-              </div>
-              <div className="personal-password">
-                <label className="col-c-fs">
-                  <span>Password</span>
-                  <input
-                    type="text"
-                    value={password}
-                    pattern={"\\d+"}
-                    onChange={(e) => {
-                      dispatch(setPassword(numbersOnly(e.target.value)));
-                    }}
-                  />
-                </label>
-              </div> */}
-            {/* <div className="personal-password">
-                <label className="col-c-fs">
-                  <span>Confirm Password</span>
-                  <input
-                    type="text"
-                    value={confirmPassword}
-                    onChange={(e) => {
-                      dispatch(setConfirmPassword(e.target.value));
-                    }}
-                  />
-                </label>
-              </div> */}
-            {/* </div> */}
             <div className="info-card personal-age">
               <h2>Age</h2>
               <input
@@ -123,6 +97,20 @@ function Financial_Info() {
                   dispatch(setPersonalDebt(numbersOnly(e.target.value)));
                 }}
               />
+            </div>
+            <div className="info-card personal-e-statment">
+              <h2>Monthly E-Statement</h2>
+              <label
+              className="col-c-c"
+              >
+                <span>Select File</span>
+                <input
+                  type="file"
+                  onChange={(e) => {
+                    dispatch(setEStatement(e.target.value));
+                  }}
+                />
+              </label>
             </div>
             <button className="personal-submit" onClick={handleSubmit}>
               Submit

@@ -5,9 +5,13 @@
 body {
   font-family: "Quicksand", sans-serif;
 }
-.app{
-    // display: grid;
-    // grid-template-columns: auto 1fr;
+a {
+  color: black;
+  text-decoration: none;
+}
+.app {
+  // display: grid;
+  // grid-template-columns: auto 1fr;
 }
 @import "custom.scss";
 @import "nav.scss";
@@ -15,3 +19,6 @@ body {
 @import "module.scss";
 @import "personalInfo.scss";
 @import "container.scss";
+@import "budget.scss";
+@import "investing.scss";
+@import "spending.scss";

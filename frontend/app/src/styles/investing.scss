@@ -1,0 +1,36 @@
+.investing-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.investing {
+}
+.investing-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 90%;
+  width: 100%;
+  grid-gap: 2rem;
+}
+.investing-tips {
+  grid-column: span 3;
+  align-items: flex-start;
+  .investing-tip {
+  }
+}
+.investing-salary,
+.investing-tfsa,
+.investing-rrsp,
+.investing-tips,
+.investing-expenses {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 0.5rem;
+}
+.investing-tfsa {
+  grid-row: span 2;
+  grid-column: span 1;
+  text-align: center;
+}
+.investing-rrsp {
+  @extend .investing-tfsa;
+}

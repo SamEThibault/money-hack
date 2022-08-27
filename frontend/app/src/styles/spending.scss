@@ -1,0 +1,36 @@
+.spending-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.spending {
+}
+.spending-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 90%;
+  width: 100%;
+  grid-gap: 2rem;
+}
+.spending-tips {
+  grid-column: span 2;
+  align-items: flex-start;
+  .spending-tip {
+  }
+}
+.spending-salary,
+.spending-tfsa,
+.spending-rrsp,
+.spending-tips,
+.spending-expenses {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 0.5rem;
+}
+.spending-chart-container {
+  grid-row: span 2;
+  grid-column: span 2;
+  text-align: center;
+}
+.spending-chart{
+    width:80%;
+}

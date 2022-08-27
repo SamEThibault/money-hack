@@ -1,69 +1,49 @@
 import "./styles/app.scss";
 import Dashboard from "./pages/Dashboard";
 import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
-import Financial_Info from "./pages/Personal_Info";
-import { useState } from 'react';
-
+import Personal_Info from "./pages/Personal_Info";
+import { useState } from "react";
+import Budget from "./pages/Budget";
+import Signup from "./pages/Signup";
+import Investing from "./pages/Investing";
+import Spending from "./pages/Spending";
+import Login from "./pages/Login";
 function App() {
+  const labels = ["Bills", "Discretionary", "Entertainment", "Food", "Gas", "Groceries", "rent"];
+  const barData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "",
+        backgroundColor: ["#3d7e8a", "#405f77", "#3d7e8a", "#088985", "#12b296", "#0a5554", "#3d8180"],
+        data: [2, 3, 5, 5, 4, 6, 7],
+      },
+    ],
+  };
+  const pielabels = ["Necessities", "Discretionary", "Savings"];
+  const pieData = {
+    labels: pielabels,
 
-  const [name, setName] = useState("");
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    var myHeaders = new Headers();
-    myHeaders.append("Disallow", "/not-for-robots.html");
-    myHeaders.append("User-Agent", "*");
-    myHeaders.append("Access-Control-Allow-Origin", "*")
-    
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("name", name);
-    
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: urlencoded,
-      redirect: 'follow',
-    };
-    
-    fetch("http://127.0.0.1:5000", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
-
-  }
-
-  async function retrieveData (e) {
-    e.preventDefault();
-
-    var myHeaders = new Headers();
-    myHeaders.append("Disallow", "/not-for-robots.html");
-    myHeaders.append("User-Agent", "*");
-    myHeaders.append("Access-Control-Allow-Origin", "*")
-
-  
-
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-
-    fetch("http://127.0.0.1:5000", requestOptions)
-      .then(response => response.json())
-      .then(result => console.log(result.name))
-      .catch(error => console.log('error', error));
-  }
-
+    datasets: [
+      {
+        label: "Budget Categories",
+        backgroundColor: ["#8cccab", "#405f77", "#3d7e8a", "#37d4ae"],
+        borderColor: "black",
+        data: [10, 10, 5],
+      },
+    ],
+  };
   return (
     <div className="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/personal-info" element={<Financial_Info />} />
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/budget" element={<Dashboard />} />
-          <Route path="/investing" element={<Dashboard />} />
-          <Route path="/spending" element={<Dashboard />} />
+          <Route path="/personal-info" element={<Personal_Info />} />
+          <Route path="/dashboard" element={<Dashboard barData={barData} pieData={pieData} />} />
+          <Route path="/budget" element={<Budget pieData={pieData} />} />
+          <Route path="/investing" element={<Investing />} />
+          <Route path="/spending" element={<Spending barData={barData} />} />
+          <Route path="/sign-up" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -54,6 +54,7 @@
 .personal-salary,
 .personal-debt {
   input {
+    user-select: none;
     width: 60%;
     height: 50px;
     font-size: 1.5rem;
@@ -66,11 +67,13 @@
   }
 }
 
-.personal-email,
+.personal-userName,
 .personal-password {
   width: 70%;
 
   input {
+    user-select: none;
+
     padding-left: 1rem;
     box-sizing: border-box;
 
@@ -81,18 +84,36 @@
     // box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 3px 0px inset, rgba(0, 0, 0, 0.5) 0px 0px 0px 2px inset;
     text-align: center;
     text-align: left;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px inset, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px inset;
+    box-shadow: rgba(255, 255, 255, 0.3) 0px 1px 2px 0px inset, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px inset;
     width: 100%;
   }
 }
-
+.personal-e-statment {
+  grid-column: span 3;
+  label {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    padding: 1rem 2rem;
+    // border:solid 2px #ec111a;
+    border-radius: .5rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  input {
+    border: none;
+    overflow: hidden;
+    color: white;
+    width: 0;
+    height: 0;
+  }
+}
 .personal-submit {
   font-size: 2rem;
   grid-column: span 3;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  border: 2px solid #a50c12;
   background-color: white;
-  color: black;
+  color: #ec111a;
   border-radius: 0.5rem;
+  border: 2px solid #ec111a;
   padding: 0.5rem 0;
+  cursor: pointer;
 }

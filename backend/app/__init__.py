@@ -11,6 +11,7 @@ from app.budget import Budget
 load_dotenv()
 app = Flask(__name__)
 CORS(app)
+global_name = ""
 
 categories = {"FOOD" : ["TIM HORTONS", "LE PELE MELE", "LA P'TITE GRENOUILLE", "MAC'S SUSHI", "Shawarma Palace Rideau", "A&W", "CAGE GATINEAU", "STARBUCKS COFFEE"],
              "GROCERIES" : ["DOLLARAMA", "WAL-MART SUPERCENTER", "RUSSELL FOODLAND"], 
@@ -35,14 +36,13 @@ def sendName():
 
 @app.route("/file", methods=["POST"])
 def getFile():
-    # f = request.files['file']
-    # f.save('temp/' + f.filename)
+    f = request.files['file']
+    f.save('temp/' + f.filename)
 
     # call Logan's function (to parse the text file)
-    name = request.form["name"]
+    name = global_name
     user = User.get_or_none(User.username == name)
 
-    
     # budget = Budget().budget(int(user.salary))
     budget = Budget().budget(70000)
     discretionary = budget[0]
@@ -74,6 +74,7 @@ def signup():
     try:
         print(request)
         name = request.form["name"]
+        global_name = name
         password = request.form["password"]
     except Exception as e:
         print(e)
@@ -90,6 +91,7 @@ def signup():
 @app.route("/signin", methods=["POST"])
 def signin():
     name = request.form["name"]
+    global_name = name
     password = request.form["password"]
     user = User.get_or_none(User.username == name)
 

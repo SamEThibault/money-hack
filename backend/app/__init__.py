@@ -35,22 +35,24 @@ def sendName():
 
 @app.route("/file", methods=["POST"])
 def getFile():
-    f = request.files['file']
-    f.save('temp/' + f.filename)
+    # f = request.files['file']
+    # f.save('temp/' + f.filename)
 
     # call Logan's function (to parse the text file)
     #################### find a way to get the name in with the file in the request #####################
     #################### FIX DATABASE UPDATE QUERY ######################################################
     parse = Parse().parse()
     user = User.update(
-        food = round(parse[0], 2),
-        groceries = round(parse[1], 2),
-        other= round(parse[2], 2),
-        entertainment = round(parse[3], 2),
-        gas = round(parse[4], 2),
-        rent = round(parse[5], 2),
-        bills = round(parse[6], 2),).where(User.username == "bruh")
+        food = parse[0],
+        groceries = parse[1],
+        other= parse[2],
+        entertainment = parse[3],
+        gas = parse[4],
+        rent = parse[5],
+        bills = parse[6]).where(User.username == "bruh")
     user.execute()
+
+    user = User.get_or_none(User.username == "bruh")
 
     # budget = Budget().budget(int(user.salary))
     budget = Budget().budget(70000)

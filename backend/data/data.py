@@ -31,5 +31,10 @@ class DataFormat():
         descList = desc.tolist()
         amountList = amount.tolist()
         userInfo = {"dates": datesList, "description": descList, "amount": amountList}
+        df = pd.DataFrame(userInfo)
+        return df
+
+DataFormat().format_txt_to_csv()
+# DataFormat().parseToDict()
         
         

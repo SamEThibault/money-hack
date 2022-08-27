@@ -60,6 +60,9 @@
   h1 {
     color: #ec111a;
   }
+  h2{
+    text-align: center;
+  }
   h3 {
     text-align: center;
     color: var(--color);
@@ -91,10 +94,30 @@
   }
 }
 .budgeting-links{
-  column-gap:2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap:2rem;
+  box-sizing: border-box;
+  padding:2rem;
   a{
     color:var(--color);
     border:solid 1px var(--color);
     padding:1rem 2rem; 
+    border-radius: .5rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+}
+.tips-container{
+  row-gap: 2rem;
+  box-sizing: border-box;
+  padding:0 2rem;
+  h2{
+    padding: 1rem 0;
+  }
+  .tips{
+    row-gap: 2rem;
   }
 }

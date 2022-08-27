@@ -30,9 +30,8 @@
   position: relative;
   border-radius: 5rem;
   cursor: pointer;
-  background-color: #293241;
-  background-color: #4c956c;
-  background-color: #59cd90;
+  // background-color: #293241;
+  // background-color: #8cccab;
 }
 .dashboard-display-toggle {
   width: 32px;
@@ -47,7 +46,7 @@
   z-index: 2;
 }
 .dashboard-light-mode {
-  color: var(--color);
+  // color: var(--color);
   font-size: 1.3rem;
 }
 .dashboard-dark-mode {

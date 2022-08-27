@@ -9,14 +9,14 @@ import Investing from "./pages/Investing";
 import Spending from "./pages/Spending";
 import Login from "./pages/Login";
 function App() {
-  const labels = ["Bills", "Discretionary", "Entertainment", "Food", "Gas", "Groceries", "rent"];
+  const labels = ["Bills", "Discretionary", "Entertainment", "Food", "Gas", "Groceries", "Rent"];
   const barData = {
     labels: labels,
     datasets: [
       {
         label: "",
         backgroundColor: ["#3d7e8a", "#405f77", "#3d7e8a", "#088985", "#12b296", "#0a5554", "#3d8180"],
-        data: [2, 3, 5, 5, 4, 6, 7],
+        data: [],
       },
     ],
   };

@@ -10,13 +10,18 @@ import {
   setPersonalDebt,
   setSalary,
   setEStatement,
+  setStatementInfo,
 } from "../redux/userSlice";
 import { numbersOnly } from "../utils/formValidation";
+import dummy from "../data/dummy.json"
 function Financial_Info() {
   const { userName, password, confirmPassword, age, personalDebt, salary, eStatement } = useSelector(
     ({ user }) => user
   );
   const dispatch = useDispatch();
+
+  console.log(dummy);  
+  dispatch(setStatementInfo(dummy));
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -103,9 +108,8 @@ function Financial_Info() {
   }
   const deleteFile = () => {
     let file = document.getElementById("statement");
-    console.log(file);
     file.value = "";
-    console.log(file);
+    dispatch(setEStatement(""));
   };
 
   return (
@@ -166,14 +170,18 @@ function Financial_Info() {
                 />
               </label>
               <div className="personal-file row-c-c">
-                <h3>{eStatement && eStatement}</h3>
-                <button
-                  onClick={() => {
-                    deleteFile();
-                  }}
-                >
-                  X
-                </button>
+                {eStatement && (
+                  <>
+                    <h3>{eStatement}</h3>
+                    <button
+                      onClick={() => {
+                        deleteFile();
+                      }}
+                    >
+                      X
+                    </button>
+                  </>
+                )}
               </div>
             </div>
             <button className="personal-submit" onClick={handleSubmit}>

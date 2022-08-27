@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 
 function Nav() {
   const location = useLocation();
-  console.log(location.pathname);
   return (
     <nav className="nav-container full-sh col-sb-c">
       <div className="nav-content col-c-fe full-w">

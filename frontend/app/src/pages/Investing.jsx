@@ -13,7 +13,7 @@ function Investing() {
         <div className="investing-content">
           <div className="investing-tips row-fs-c">
             {[1, 2, 3, 4, 5].map(() => (
-              <div className="investing-tip">{"Ivesting"}</div>
+              <div className="investing-tip">{"Investing"}</div>
             ))}
           </div>
           <div className="investing-tfsa col-c-c">

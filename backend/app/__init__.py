@@ -1,7 +1,3 @@
-# python -m venv pyenv
-# source pyenv/Scripts/activate
-# pip install -r requirements.txt
-
 from flask import Flask, request
 from flask_cors import CORS
 from app import test

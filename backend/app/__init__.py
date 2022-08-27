@@ -40,7 +40,17 @@ def getFile():
 
     # call Logan's function (to parse the text file)
     #################### find a way to get the name in with the file in the request #####################
-    user = User.get_or_none(User.username == "bruh")
+    #################### FIX DATABASE UPDATE QUERY ######################################################
+    parse = Parse().parse()
+    user = User.update(
+        food = round(parse[0], 2),
+        groceries = round(parse[1], 2),
+        other= round(parse[2], 2),
+        entertainment = round(parse[3], 2),
+        gas = round(parse[4], 2),
+        rent = round(parse[5], 2),
+        bills = round(parse[6], 2),).where(User.username == "bruh")
+    user.execute()
 
     # budget = Budget().budget(int(user.salary))
     budget = Budget().budget(70000)
@@ -49,15 +59,6 @@ def getFile():
     RRSP = budget[2]
     leftover = budget[3]
     tips = budget[4]
-
-    parse = Parse().parse()
-    user.food = round(parse[0], 2)
-    user.groceries = round(parse[1], 2)
-    user.other= round(parse[2], 2)
-    user.entertainment = round(parse[3], 2)
-    user.gas = round(parse[4], 2)
-    user.rent = round(parse[5], 2)
-    user.bills = round(parse[6], 2)
 
     res = {"food" : user.food, "groceries" : user.groceries, 
            "other" : user.other, "entertainment" : user.entertainment,

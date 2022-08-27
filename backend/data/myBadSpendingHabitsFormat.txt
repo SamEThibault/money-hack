@@ -24,3 +24,7 @@ Date de transaction	Date d'inscription	Numéro de transaction 	Description  				
 26 JUI 2022		26 JUI 2022		023			STARBUCKS COFFEE #5382   ROCKLAND     ON	10.96						
 28 JUI 2022		28 JUI 2022		024			Microsoft*OneDrive StandaMississauga  ON	2.26						
 28 JUI 2022		28 JUI 2022		025			MR. GAS #37              CUMBERLAND   ON	84.08
+31 JUI 2022		31 JUI 2022		026			Rent						700
+31 JUI 2022		31 JUI 2022		027			Utilities					100
+31 JUI 2022		31 JUI 2022		028			Rogers Internet					40
+31 JUI 2022		31 JUI 2022		028			Rogers Cell					25

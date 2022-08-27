@@ -8,10 +8,11 @@ class Budget():
         self.info_communicator = InitialInfo()
         self.invest_communicator = InvestInfo()
 
-    def budget(self, salary):
+    def budget(self, salary, debt):
         salary_taxed = self.info_communicator.salary_taxed(salary)
         disposable, savings = self.disposable(salary_taxed, salary)
 
+        DEBT = self.DEBT(debt, savings)
         if salary >= 100000:
             RRSP = self.RRSP(salary, savings)
             TFSA = self.TFSA(savings-RRSP)
@@ -53,3 +54,11 @@ class Budget():
         else:
             RRSP = savings
         return RRSP 
+    
+    def DEBT(self, debt, savings):
+        if debt > 0:
+            #USE ALL SAVINGS MONEY FOR DEBT!!!
+            DEBT = savings - 100
+        else:
+            DEBT = 0
+        return DEBT

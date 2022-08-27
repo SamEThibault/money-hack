@@ -1,0 +1,34 @@
+.dashboard-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.dashboard-header {
+  grid-column: span 4;
+  .dashboard-controls {
+  }
+}
+
+.dashboard-content {
+  h1 {
+    color: #ec111a;
+  }
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1.5rem;
+  margin: 0 1.5rem;
+}
+.budget-container {
+  grid-row: span 2;
+  grid-column: span 2;
+}
+.invest-container {
+  grid-column: span 3;
+  grid-row: span 3;
+}
+.graph-container {
+  grid-row: span 3;
+}
+.category-container {
+  grid-row: span 2;
+}

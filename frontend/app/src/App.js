@@ -1,5 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles/app.scss";
+import Dashboard from "./pages/Dashboard";
+import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
+import Financial_Info from "./pages/Personal_Info";
 import { useState } from 'react';
 
 function App() {
@@ -54,38 +56,16 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <form onSubmit={handleSubmit}>
-          <label>Enter your name:
-            <input
-            type="text" 
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-        </form>
-
-        <form action = "http://127.0.0.1:5000/file" method = "POST" 
-         enctype = "multipart/form-data">
-         <input type = "file" name = "file" />
-         <input type = "submit"/>
-        </form> 
-
-        <button onClick={retrieveData}>Default</button>
-      </header>
+    <div className="app">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/personal-info" element={<Financial_Info />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/budget" element={<Dashboard />} />
+          <Route path="/investing" element={<Dashboard />} />
+          <Route path="/spending" element={<Dashboard />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

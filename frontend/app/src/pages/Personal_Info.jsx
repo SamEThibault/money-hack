@@ -11,59 +11,23 @@ import {
   setSalary,
   setEStatement,
   setStatementInfo,
+  setSubmitted,
 } from "../redux/userSlice";
 import { numbersOnly } from "../utils/formValidation";
 import dummy from "../data/dummy.json";
 import { motion } from "framer-motion";
 function Financial_Info() {
-  const { userName, password, confirmPassword, age, personalDebt, salary, eStatement } = useSelector(
-    ({ user }) => user
-  );
+  const { userName, password, confirmPassword, age, personalDebt, salary, eStatement, submitted } =
+    useSelector(({ user }) => user);
   const dispatch = useDispatch();
-
-  console.log(dummy);
   dispatch(setStatementInfo(dummy));
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    var myHeaders = new Headers();
-    myHeaders.append("Disallow", "/not-for-robots.html");
-    myHeaders.append("User-Agent", "*");
-    myHeaders.append("Access-Control-Allow-Origin", "*");
-
-    let formData = new FormData();
-
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("name", userName);
-    urlencoded.append("age", age);
-    urlencoded.append("salary", salary);
-    urlencoded.append("debt", personalDebt);
-
-    formData.append("file", this.files[0], eStatement);
-    formData.append("name", userName);
-
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: urlencoded,
-      redirect: "follow",
-    };
-
-    // Sends the user's personal info then sends the e-statement
-    fetch("http://127.0.0.1:5000/addinfo", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .then(() => {
-        fetch("http://127.0.0.1:5000/file")
-          .then((response) => response.text())
-          .then((result) => console.log(result));
-      })
-      .catch((error) => console.log("error", error));
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
+    dispatch(setSubmitted(true));
+    setTimeout(() => {
+      dispatch(setSubmitted(false));
+    }, 4000);
 
     var myHeaders = new Headers();
     myHeaders.append("Disallow", "/not-for-robots.html");
@@ -101,11 +65,10 @@ function Financial_Info() {
       .then((response) => response.text())
       .then((result) => console.log(result))
       .then(() => {
-            fetch("http://127.0.0.1:5000/file", requestOptionsFile)
-          .then((response) => 
-            response.json())
+        fetch("http://127.0.0.1:5000/file", requestOptionsFile)
+          .then((response) => response.json())
           .then((result) => {
-            dispatch(setStatementInfo(result))
+            dispatch(setStatementInfo(result));
           });
       })
       .catch((error) => console.log("error", error));
@@ -116,11 +79,26 @@ function Financial_Info() {
     file.value = "";
     dispatch(setEStatement(""));
   };
-
+  const statusVariants = {
+    hidden: {
+      x: "100vw",
+    },
+    visible: {
+      x: "0",
+    },
+  };
   return (
     <div className="personal-container">
       <Nav />
-      <motion.div className="personal-status">{"HLELLO WOLD"}</motion.div>
+      <motion.div
+        variants={statusVariants}
+        initial={"hidden"}
+        animate={submitted ? "visible" : "hidden"}
+        transition={{ duration: 1.5 }}
+        className="personal-status row-c-c"
+      >
+        <h2 style={{ color: "#8cccab" }}>Data Saved Successfully.</h2>
+      </motion.div>
       <div className="personal-content ">
         <Container classProp={"personal col-fs-c"}>
           <h1>Personal Info</h1>
@@ -165,7 +143,7 @@ function Financial_Info() {
             </div>
             <div className="info-card personal-e-statment">
               <h2>Monthly E-Statement</h2>
-              <label className="info-card-select-file col-c-c">
+              <label className="info-card-select-file info-card-select-file col-c-c">
                 <span>Select File</span>
                 <input
                   id="statement"

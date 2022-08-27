@@ -16,6 +16,7 @@ export const userSlice = createSlice({
     navUrl: "",
     isLightMode: false,
     statementInfo: {},
+    submitted: false,
   },
   reducers: {
     setUserName: (state, { payload }) => {
@@ -55,10 +56,12 @@ export const userSlice = createSlice({
     },
     setStatementInfo: (state, { payload }) => {
       state.statementInfo = payload;
-      console.log(state.statementInfo);
     },
     setLoginVerify: (state, { payload }) => {
       state.loginVerify = payload;
+    },
+    setSubmitted: (state, { payload }) => {
+      state.submitted = payload;
     },
   },
 });
@@ -75,5 +78,6 @@ export const {
   setIsLightMode,
   setLoginVerify,
   setStatementInfo,
+  setSubmitted,
 } = userSlice.actions;
 export default userSlice.reducer;

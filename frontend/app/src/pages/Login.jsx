@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState  } from "react";
 import Nav from "./Nav";
 import Container from "../components/Container";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,25 +9,24 @@ import {
   setPassword,
   setPersonalDebt,
   setSalary,
-  setLoginVerify,
+  setLoginVerify,,
 } from "../redux/userSlice";
 import { numbersOnly } from "../utils/formValidation";
 import "../styles/signup.scss";
 import { Link, useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const { userName, password, loginVerify } = useSelector(({ user }) => user);
+  const { userName, password, loginVerify  } = useSelector(({ user }) => user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
   const handleSignup = () => {
-
-    if (userName == 'test') {
+    if (userName == "test") {
       dispatch(setLoginVerify(true));
-      navigate("/dashboard");
+      navigate("/personal-info");
     }
-    
+
     var myHeaders = new Headers();
     myHeaders.append("Disallow", "/not-for-robots.html");
     myHeaders.append("User-Agent", "*");
@@ -49,7 +48,7 @@ function Dashboard() {
       .then((result) => {
         if (result.status == 200) {
           dispatch(setLoginVerify(true));
-          navigate("/dashboard");
+          navigate("/personal-info");
         } else {
           return setError("Account not found, please sign up");
         }
@@ -64,7 +63,7 @@ function Dashboard() {
           Welcome to <br />
           SCOTIABANK
         </h2>
-        {error && (<p>{error}</p>)}
+        {error && <p>{error}</p>}
         <div className="signup-userName">
           <label className="col-c-fs">
             <span>UserName</span>
@@ -103,10 +102,15 @@ function Dashboard() {
           </button>
         </div>
         <p>
+          
           Don't have an account?{" "}
+         {" "}
           <Link to="/sign-up" className="signup-login">
+            
             Sign Up
+          
           </Link>
+        
         </p>
       </div>
     </div>

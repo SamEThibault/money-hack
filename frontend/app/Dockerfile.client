@@ -1,0 +1,14 @@
+FROM node:13.12-alpine
+
+WORKDIR /frontend/app
+
+ENV PATH frontend/app/node_modules/.bin:$PATH
+
+COPY frontend/app/package.json package.json
+COPY frontend/app/package-lock.json package-lock.json
+
+# RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
+RUN npm install --save-dev cross-env -g
+
+CMD ["npm", "start"]

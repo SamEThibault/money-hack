@@ -1,0 +1,41 @@
+services:
+  server:
+    container_name: backend_server
+    image: backend_server
+    ports:
+      - "5000:5000"
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile.server
+    volumes:
+      - ./backend:/backend
+      
+  client:
+    container_name: backend_client
+    image: backend_client
+    ports:
+      - "3000:3000"
+    build:
+      context: .
+      dockerfile: ./frontend/app/Dockerfile.client
+    volumes:
+      - ./frontend:/frontend
+      - ./node_modules:/frontend/app/node_modules
+  
+  mysql:
+    container_name: backend_db
+    image: mysql
+    ports:
+      - "5432:3306"
+    # build:
+    #   /var/lib/mysql
+    # context:
+    #   ./backend
+    # dockerfile: Dockerfile
+    env_file:
+      - /backend/app/.env
+    volumes:
+      - mydatabase:/var/lib/mysql
+
+volumes:
+  mydatabase:

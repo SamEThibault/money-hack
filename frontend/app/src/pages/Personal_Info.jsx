@@ -20,7 +20,6 @@ function Financial_Info() {
   const { userName, password, confirmPassword, age, personalDebt, salary, eStatement, submitted } =
     useSelector(({ user }) => user);
   const dispatch = useDispatch();
-  dispatch(setStatementInfo(dummy));
 
   async function handleSubmit(e) {
     e.preventDefault();

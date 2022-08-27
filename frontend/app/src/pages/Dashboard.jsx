@@ -12,7 +12,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setIsLightMode } from "../redux/userSlice";
 function Dashboard({ pieData, barData, toggleDisplayMode }) {
   const dispatch = useDispatch();
-  const { isLightMode, statementInfo, salary } = useSelector(({ user }) => user);
+  const { isLightMode, statementInfo, salary } = useSelector(
+    ({ user }) => user
+  );
   const toggleVariants = {
     hidden: {
       left: "0.45rem",
@@ -52,7 +54,7 @@ function Dashboard({ pieData, barData, toggleDisplayMode }) {
               className="dashboard-display-mode row-sb-c"
               onClick={() => {
                 dispatch(setIsLightMode(!isLightMode));
-                toggleDisplayMode(!isLightMode)
+                toggleDisplayMode(!isLightMode);
               }}
               style={{
                 background: isLightMode ? "#8cccab" : "#293241",
@@ -84,9 +86,46 @@ function Dashboard({ pieData, barData, toggleDisplayMode }) {
           </div>
         </div>
 
-        <Link to={"/budget"} className={`budgeting-container`}>
-          <Module classProp="full-h-w">fjdsakjlfj;</Module>
-        </Link>
+        <div className={`budgeting-container`}>
+          <Module classProp="full-h-w">
+            <h2>Check these articles for more financial information!</h2>
+            <div className="budgeting-links row-c-c">
+              <a href="https://www.scotiabank.com/ca/en/personal/advice-plus/get-started/financial-planning.html">
+                Link
+              </a>
+              <a href="https://www.scotiafunds.com/en/home/news-insights.html">
+                Link
+              </a>
+              <a href="https://www.scotiabank.com/ca/en/personal/advice-plus/banking-101/investments.html">
+                Link
+              </a>
+              <a
+                href="
+           https://www.scotiabank.com/ca/en/personal/advice-plus/banking-101/investments.html
+          
+          "
+              >
+                Link
+              </a>
+              <a
+                href="
+           https://www.scotiabank.com/ca/en/personal/investing/investing-basics/investment-glossary.html
+          
+          "
+              >
+                Link
+              </a>
+              <a
+                href="
+           https://www.scotiafunds.com/en/home/resources/mutual-funds-basics.html
+          
+          "
+              >
+                Link
+              </a>
+            </div>
+          </Module>
+        </div>
         <Link to={"/spending"} className={`category-container`}>
           <Module classProp="full-h-w col-c-c">
             <h3>Budgeting Categories</h3>
@@ -96,12 +135,18 @@ function Dashboard({ pieData, barData, toggleDisplayMode }) {
           </Module>
         </Link>
         <Link to={"/personal-info"} className={`salary-container`}>
-          <Module classProp="full-h-w">          <div className="budget-salary">Salary
-            <h2>{salary}</h2>
-          </div></Module>
+          <Module classProp="full-h-w">
+            {" "}
+            <div className="dash-budget-salary">
+              Salary
+              <h2>{salary}</h2>
+            </div>
+          </Module>
         </Link>
         <Link to={"/personal-info"} className={`expenses-container`}>
-          <Module classProp="full-h-w">fjdsakjlfj;</Module>
+          <Module classProp="full-h-w">
+            Debt<h2>{statementInfo.debt}</h2>
+          </Module>
         </Link>
         <Link to={"/personal-info"} className={`spend-container`}>
           <Module classProp="full-h-w col-c-c">
@@ -123,7 +168,12 @@ function Dashboard({ pieData, barData, toggleDisplayMode }) {
         </Link>
         <Link to={"/budget"} className={`graph-container`}>
           <Module classProp="full-h-w">
-            {["Tips", "dsafjkl", "hdsfjkalf"].map((tip) => (
+            <h2>Tips</h2>
+            {[
+              "- Putting your savings into investments as part of a financial plan can help you achieve your financial goals. It all starts with personalised investment advice just for you.",
+              "- A mortgage is a loan from a bank or alternate lender that helps you buy property, like a house, a condo, or a commercial building",
+              "- Protect your money with a bank account. Use your chequing account to make everyday payments and your savings account for your future financial needs.",
+            ].map((tip) => (
               <p>{tip}</p>
             ))}
           </Module>

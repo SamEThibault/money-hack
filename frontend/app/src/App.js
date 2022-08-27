@@ -21,13 +21,21 @@ function App() {
         label: "",
         backgroundColor: ["#3d7e8a", "#405f77", "#3d7e8a", "#088985", "#12b296", "#0a5554", "#3d8180"],
         data: [
+          
           statementInfo.bills,
+         
           statementInfo.other,
+         
           statementInfo.entertainment,
+         
           statementInfo.food,
+         
           statementInfo.gas,
+         
           statementInfo.groceries,
+         
           statementInfo.rent,
+        ,
         ],
       },
     ],
@@ -54,6 +62,7 @@ function App() {
       },
     ],
   };
+
   const toggleDisplayMode = (lightMode) => {
     var r = document.querySelector(":root");
     if (lightMode) {
@@ -83,20 +92,21 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/personal-info" element={loginVerify ? <Personal_Info /> : <Login />} />
+          <Route path="/personal-info" element={loginVerify ? <Personal_Info /> : <Personal_Info />} />
           <Route
             path="/dashboard"
             element={
               loginVerify ? (
                 <Dashboard barData={barData} pieData={pieData} toggleDisplayMode={toggleDisplayMode} />
               ) : (
-                <Login />
+                <Dashboard barData={barData} pieData={pieData} toggleDisplayMode={toggleDisplayMode} />
+
               )
             }
           />
-          <Route path="/budget" element={loginVerify ? <Budget pieData={pieData} /> : <Login />} />
-          <Route path="/investing" element={loginVerify ? <Investing /> : <Login />} />
-          <Route path="/spending" element={loginVerify ? <Spending barData={barData} /> : <Login />} />
+          <Route path="/budget" element={loginVerify ? <Budget pieData={pieData} /> : <Budget pieData={pieData} />} />
+          <Route path="/investing" element={loginVerify ? <Investing /> : <Investing /> } />
+          <Route path="/spending" element={loginVerify ? <Spending barData={barData} /> : <Spending barData={barData} />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/login" element={<Login />} />
         </Routes>

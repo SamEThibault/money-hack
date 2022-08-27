@@ -23,21 +23,20 @@ function Investing() {
             ))}
             {statementInfo.tips.Save}
           </div>
-
-          <div className="investing-tfsa col-c-c">
+          <div className="investing-stats investing-tfsa col-c-c">
             <h1>
               Projected Yearly <br /> TFSA Contribution
             </h1>
             <h2>{statementInfo.TFSA.toFixed(2)}</h2>
           </div>
-          <div className="investing-rrsp col-c-c">
+          <div className="investing-stats investing-rrsp col-c-c">
             <h1>
               Projected Yearly
               <br /> RRSP Contribution
             </h1>
             <h2>{statementInfo.RRSP.toFixed(2)}</h2>
           </div>
-          <div className="investing-rrsp col-c-c">
+          <div className="investing-stats investing-rrsp col-c-c">
             <h1>Extra <br/> Savings</h1>
             <h2>{statementInfo.leftover.toFixed(2)}</h2>
           </div>

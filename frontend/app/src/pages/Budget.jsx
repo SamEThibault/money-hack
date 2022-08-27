@@ -13,6 +13,7 @@ function Budget({ pieData }) {
       <Nav />
       <Container classProp={"budget col-c-fs"}>
         <h1>Budget</h1>
+
         <div className="budget-content">
           <div className="budget-tips row-fs-c">
             {statementInfo.tips.Budget.map((tip) => (

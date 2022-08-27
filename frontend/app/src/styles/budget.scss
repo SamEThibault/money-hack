@@ -1,6 +1,7 @@
 .budget-container {
   display: grid;
   grid-template-columns: auto 1fr;
+  background-color: var(--bg-color);
 }
 .budget {
   row-gap: 2rem;
@@ -29,6 +30,8 @@
 .budget-tips,
 .budget-expenses {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: var(--box);
+
   border-radius: 0.5rem;
 }
 .budget-pie-container {

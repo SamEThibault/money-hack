@@ -57,10 +57,7 @@ function Dashboard() {
     {
       handleSignup();
       return setError(null)
-
     }
-    
-
   }
   
   return (

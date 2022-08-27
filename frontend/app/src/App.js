@@ -49,7 +49,7 @@ function App() {
             statementInfo.rent +
             statementInfo.entertainment,
           statementInfo.discretionary,
-          (statementInfo.TFSA + statementInfo.RRSP) / 12,
+          (statementInfo.TFSA + statementInfo.debt + statementInfo.RRSP) / 12,
         ],
       },
     ],

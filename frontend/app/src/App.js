@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 function App() {
-  const labels = ["Bills", "Discretionary", "Entertainment", "Food", "Gas", "Groceries", "Rent"];
+  const labels = ["Bills", "Other", "Entertainment", "Food", "Gas", "Groceries", "Rent"];
   const {loginVerify, statementInfo} = useSelector(({ user }) => user);
  
   const barData = {

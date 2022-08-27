@@ -1,10 +1,12 @@
 import os
 from flask import Flask, request
 from flask_cors import CORS
-from app import test
 from peewee import *
 from dotenv import load_dotenv
 from app.db import User
+
+from data.parse import Parse
+from app.budget import Budget
 
 load_dotenv()
 app = Flask(__name__)
@@ -33,14 +35,37 @@ def sendName():
 
 @app.route("/file", methods=["POST"])
 def getFile():
-    f = request.files['file']
-    f.save('temp/' + f.filename)
+    # f = request.files['file']
+    # f.save('temp/' + f.filename)
 
     # call Logan's function (to parse the text file)
+    name = request.form["name"]
+    user = User.get_or_none(User.username == name)
+
     
-    # read the returned dict, add the sums of each category and send them to the User's table
-    # call the budgetting / investing calulations
-    return 'W'
+    # budget = Budget().budget(int(user.salary))
+    budget = Budget().budget(70000)
+    discretionary = budget[0]
+    TFSA = budget[1]
+    RRSP = budget[2]
+    leftover = budget[3]
+    tips = budget[4]
+
+    parse = Parse().parse()
+    user.food = parse[0]
+    user.groceries = parse[1]
+    user.other= parse[2]
+    user.entertainment = parse[3]
+    user.gas = parse[4]
+    user.rent = parse[5]
+    user.bills = parse[6]
+
+    res = {"food" : user.food, "groceries" : user.groceries, 
+           "other" : user.other, "entertainment" : user.entertainment,
+           "gas" : user.gas, "rent" : user.rent, "bills" : user.bills,
+           "discretionary" : discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
+           "leftover" : leftover, "tips" : tips}
+    return res
 
 
 # sign up endpoint: checks to see if name is unique, and adds user to Users table

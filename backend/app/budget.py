@@ -1,5 +1,5 @@
-from info import InitialInfo
-from invest import InvestInfo
+from app.info import InitialInfo
+from app.invest import InvestInfo
 
 class Budget():
 
@@ -30,7 +30,7 @@ class Budget():
         print("Leftover $%.2f" % (leftover))
         print(tips['RRSP'] + '\n' + tips['TFSA'])
 
-        return #discretinoary/12, TFSA, RRSP, leftover, tips
+        return [discretionary/12, TFSA, RRSP, leftover, tips]
 
     def disposable(self, salary_taxed, salary):
         bills = (salary_taxed*0.5)/12 #28000

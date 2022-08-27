@@ -5,25 +5,25 @@ import numpy as np
 class DataFormat():
 
     def format_txt_to_csv(self):
-        with open('myBadSpendingHabits.txt', 'r') as file:
+        with open('../data/myBadSpendingHabits.txt', 'r') as file:
             filedata = file.read()
 
             filedata = filedata.replace(',' , '.')
 
-        with open('myBadSpendingHabitsFormat.txt', 'w') as file:
+        with open('../data/myBadSpendingHabitsFormat.txt', 'w') as file:
             file.write(filedata)
 
-        with open('myBadSpendingHabitsFormat.txt') as infile:
+        with open('../data/myBadSpendingHabitsFormat.txt') as infile:
             data = re.sub('\t+', ',', infile.read())
             data = data.replace(',\n', '\n')
 
-            print(data, file=open('spendingHabits.csv', 'w'))   
+            print(data, file=open('../data/spendingHabits.csv', 'w'))   
 
-        read_file = pd.read_csv(r'spendingHabits.csv')
-        read_file.to_csv(r'spendingHabits.csv', index=False, header=["Transaction Date", "Registration Date", "Transaction Number", "Description", "Amount ($)"]) 
+        read_file = pd.read_csv(r'../data/spendingHabits.csv')
+        read_file.to_csv(r'../data/spendingHabits.csv', index=False, header=["Transaction Date", "Registration Date", "Transaction Number", "Description", "Amount ($)"]) 
 
     def parseToDict(self):
-        info = pd.read_csv(r"spendingHabits.csv")
+        info = pd.read_csv(r"../data/spendingHabits.csv")
         dates = info['Transaction Date'].values
         desc = info['Description'].values
         amount = info['Amount ($)'].values      

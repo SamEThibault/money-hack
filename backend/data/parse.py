@@ -1,5 +1,4 @@
-from data import DataFormat
-# from peewee import *
+from data.data import DataFormat
 
 class Parse():
     def __init__(self):
@@ -13,8 +12,7 @@ class Parse():
              }
         self.communicator = DataFormat()
 
-    def function(self):
-        #user = User.get_or_none(User.username == name)
+    def parse(self):
         data = self.communicator.parseToDict()
         foodSum = 0
         grocerySum = 0
@@ -49,13 +47,6 @@ class Parse():
             for bills in self.categories['BILLS']:
                 if bills in desc:
                     billsSum += data['amount'][i]
-            
-        # user.food = foodSum
-        # user.groceries = grocerySum
-        # user.gas = gasSum
-        # user.entertainment = entertainmentSum
-        # user.other = otherSum
-        # user.bills = billsSum
-        # user.rent = rentSum
+        return [foodSum, grocerySum, otherSum, entertainmentSum, gasSum, rentSum, billsSum]
 
-Parse().function()
+Parse().parse()

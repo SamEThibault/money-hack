@@ -62,7 +62,7 @@ def getFile():
     res = {"food" : user.food, "groceries" : user.groceries, 
            "other" : user.other, "entertainment" : user.entertainment,
            "gas" : user.gas, "rent" : user.rent, "bills" : user.bills,
-           "discretionary" : user.discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
+           "discretionary" : discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
            "leftover" : leftover, "tips" : tips}
     return res
 

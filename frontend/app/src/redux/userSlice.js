@@ -11,6 +11,7 @@ export const userSlice = createSlice({
     personalDebt: "",
     eStatement: "",
     age: "",
+    loginVerify: false,
     salary: "",
     personalDebt: "",
     eStatement: "",
@@ -56,7 +57,10 @@ export const userSlice = createSlice({
     },
     setStatementInfo: (state, { payload }) => {
       state.statementInfo = payload;
-      console.log(state.statementInfo)
+      console.log(state.statementInfo);
+    },
+    setLoginVerify: (state, { payload }) => {
+      state.loginVerify = payload;
     },
   },
 });
@@ -70,8 +74,5 @@ export const {
   setSalary,
   setPersonalDebt,
   setEStatement,
-  setNavUrl,
-  setIsLightMode,
-  setStatementInfo,
 } = userSlice.actions;
 export default userSlice.reducer;

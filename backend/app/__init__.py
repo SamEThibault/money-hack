@@ -37,11 +37,10 @@ def sendName():
 def getFile():
     f = request.files['file']
     f.save('temp/' + f.filename)
+    print(f.filename)
 
     name = request.form.get("name")
-    print(name)
-    # call Logan's function (to parse the text file)
-    parse = Parse().parse()
+    parse = Parse().parse(f.filename)
     user = User.update(
         food = parse[0],
         groceries = parse[1],
@@ -54,18 +53,19 @@ def getFile():
 
     user = User.get_or_none(User.username == name)
     if user != None:
-        budget = Budget().budget(int(user.salary))
+        budget = Budget().budget(int(user.salary), int(user.debt))
         discretionary = budget[0]
         TFSA = budget[1]
         RRSP = budget[2]
         leftover = budget[3]
         tips = budget[4]
+        DEBT = budget[5]
 
         res = {"food" : user.food, "groceries" : user.groceries, 
             "other" : user.other, "entertainment" : user.entertainment,
             "gas" : user.gas, "rent" : user.rent, "bills" : user.bills,
             "discretionary" : discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
-            "leftover" : leftover, "tips" : tips}
+            "leftover" : leftover, "tips" : tips, "debt": DEBT}
         return res
     else:
         return {"body" : "Error", "status" : 400}

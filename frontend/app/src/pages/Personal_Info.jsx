@@ -77,8 +77,8 @@ function Financial_Info() {
     urlencoded.append("salary", salary);
     urlencoded.append("debt", personalDebt);
 
-    var input = document.querySelector('input[type="file"]');
-    formData.append("file", input.files[0], input);
+    var input = document.querySelector('input[type="file"]')
+    formData.append("file", input.files[0]);
     formData.append("name", userName);
 
     var requestOptionsAddInfo = {
@@ -126,7 +126,7 @@ function Financial_Info() {
           <form className="personal-inputs full-w" onSubmit={handleSubmit}>
             <div className="info-card personal-age">
               <h2>Age</h2>
-              <input
+              <input 
                 type="text"
                 value={age}
                 placeholder={"0-100"}
@@ -150,6 +150,7 @@ function Financial_Info() {
               <h2>Personal Debt</h2>
               <input
                 type="text"
+                id = "file"
                 placeholder={"$0.00"}
                 value={personalDebt}
                 onChange={(e) => {

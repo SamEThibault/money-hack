@@ -1,17 +1,52 @@
+import os
 from flask import Flask, request
 from flask_cors import CORS
 from app import test
-from app.db import User
 from peewee import *
 
 app = Flask(__name__)
 CORS(app)
 
+
+############ DB #############
+db = MySQLDatabase(
+    os.getenv("MYSQL_DATABASE"),
+    user=os.getenv("MYSQL_USER"),
+    password=os.getenv("MYSQL_PASSWORD"),
+    host=os.getenv("MYSQL_HOST"),
+    port=3306
+)
+print(db)
+
+class User(Model):
+    password = CharField()
+    username = CharField()
+    age = CharField()
+    salary = CharField()
+    debt = CharField()
+
+    groceries = CharField()
+    food = CharField()
+    gas = CharField()
+    entertainment = CharField()
+    other = CharField()
+    rent = CharField()
+    bills = CharField() # sum of cellphone, utilities, and internet, (maybe car payments)
+
+    class Meta:
+        database = db
+
+db.connect()
+db.create_tables([User])
+
+############################
+
 categories = {"FOOD" : ["TIM HORTONS", "LE PELE MELE", "LA P'TITE GRENOUILLE", "MAC'S SUSHI", "Shawarma Palace Rideau", "A&W", "CAGE GATINEAU", "STARBUCKS COFFEE"],
              "GROCERIES" : ["DOLLARAMA", "WAL-MART SUPERCENTER", "RUSSELL FOODLAND"], 
              "OTHER": ["IMPERIAL BARBER SHOP", "HAWKINS CAR WASH", "STITCH IT"], 
              "ENTERTAINMENT" : [], 
-             "GAS" : ["MR. GAS", "SHELL", "PETROCAN-500"]}
+             "GAS" : ["MR. GAS", "SHELL", "PETROCAN-500"]
+             }
 
 @app.route("/", methods=["POST"])
 def getName():
@@ -32,6 +67,11 @@ def sendName():
 def getFile():
     f = request.files['file']
     f.save('temp/' + f.filename)
+
+    ############
+    # call Logan's function (to parse the text file)
+    # read the returned dict, add the sums of each category and send them to the User's table
+    # call the budgetting / investing calulations
     return 'W'
 
 # sign up endpoint: checks to see if name is unique, and adds user to Users table

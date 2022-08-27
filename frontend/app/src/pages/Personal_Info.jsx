@@ -143,7 +143,7 @@ function Financial_Info() {
             </div>
             <div className="info-card personal-e-statment">
               <h2>Monthly E-Statement</h2>
-              <label className="info-card-select-file col-c-c">
+              <label className="info-card-select-file info-card-select-file col-c-c">
                 <span>Select File</span>
                 <input
                   id="statement"

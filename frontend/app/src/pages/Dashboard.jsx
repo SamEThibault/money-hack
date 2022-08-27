@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setIsLightMode } from "../redux/userSlice";
 function Dashboard({ pieData, barData, toggleDisplayMode }) {
   const dispatch = useDispatch();
-  const { isLightMode, statementInfo } = useSelector(({ user }) => user);
+  const { isLightMode, statementInfo, salary } = useSelector(({ user }) => user);
   const toggleVariants = {
     hidden: {
       left: "0.45rem",
@@ -96,7 +96,9 @@ function Dashboard({ pieData, barData, toggleDisplayMode }) {
           </Module>
         </Link>
         <Link to={"/personal-info"} className={`salary-container`}>
-          <Module classProp="full-h-w">fjdsakjlfj;</Module>
+          <Module classProp="full-h-w">          <div className="budget-salary">Salary
+            <h2>{salary}</h2>
+          </div></Module>
         </Link>
         <Link to={"/personal-info"} className={`expenses-container`}>
           <Module classProp="full-h-w">fjdsakjlfj;</Module>
@@ -104,7 +106,7 @@ function Dashboard({ pieData, barData, toggleDisplayMode }) {
         <Link to={"/personal-info"} className={`spend-container`}>
           <Module classProp="full-h-w col-c-c">
             <div className="dashboard-spend-bar">
-              <h3>Budgeting Categories</h3>
+              <h3>Spending Categories</h3>
 
               <Bar
                 data={barData}

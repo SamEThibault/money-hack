@@ -25,11 +25,14 @@ function Budget({ pieData }) {
               <Pie data={pieData} />
             </div>
           </div>
-          <div className="budget-salary">Salary
+          <div className="budget-salary"><h2>Salary</h2>
             <h2>{salary}</h2>
           </div>
           
-          <div className="budget-expenses">Expenses</div>
+          <div className="budget-expenses"><h2>Debt</h2>
+            <h2>{statementInfo.debt}</h2>
+            <h3>{statementInfo.tips.Debt[Math.floor(Math.random() * 4)]}</h3>
+          </div>
         </div>
       </Container>
     </div>

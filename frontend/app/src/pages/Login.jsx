@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState  } from "react";
 import Nav from "./Nav";
 import Container from "../components/Container";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,14 +9,14 @@ import {
   setPassword,
   setPersonalDebt,
   setSalary,
-  setLoginVerify,
+  setLoginVerify,,
 } from "../redux/userSlice";
 import { numbersOnly } from "../utils/formValidation";
 import "../styles/signup.scss";
 import { Link, useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const { userName, password, loginVerify } = useSelector(({ user }) => user);
+  const { userName, password, loginVerify  } = useSelector(({ user }) => user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -102,10 +102,15 @@ function Dashboard() {
           </button>
         </div>
         <p>
+          
           Don't have an account?{" "}
+         {" "}
           <Link to="/sign-up" className="signup-login">
+            
             Sign Up
+          
           </Link>
+        
         </p>
       </div>
     </div>

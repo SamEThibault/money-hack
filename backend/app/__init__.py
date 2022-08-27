@@ -63,11 +63,11 @@ def getFile():
         spendingmsg = ""
 
         if user.food > 100:
-            spendingmsg = "wow you're a fatass"
+            spendingmsg = "You have spent over 100$ on restaurants this month, try using some of this money to sharpen your home cooking skills!"
         elif user.entertainment > 200:
-            spendingmsg = "chill bro"
+            spendingmsg = "You have spent over 200$ on entertainment this month, wow!"
         elif user.leftover > 2000:
-            spendingmsg = "go on vacation or smt"
+            spendingmsg = "You have over 2000$ leftover, great job! Treat yourself to a vacation."
 
         res = {"food" : user.food, "groceries" : user.groceries, 
             "other" : user.other, "entertainment" : user.entertainment,

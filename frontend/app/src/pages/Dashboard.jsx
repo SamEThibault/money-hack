@@ -125,7 +125,7 @@ function Dashboard({ pieData, barData, toggleDisplayMode }) {
         <Link to={"/personal-info"} className={`expenses-container`}>
           <Module classProp="full-h-w col-c-c">
             <h2>Debt</h2>
-            <h3>{statementInfo.debt}</h3>
+            <h3>-{statementInfo.debt}</h3>
           </Module>
         </Link>
         <Link to={"/personal-info"} className={`spend-container`}>

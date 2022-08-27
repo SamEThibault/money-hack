@@ -31,7 +31,7 @@ function Budget({ pieData }) {
           </div>
           
           <div className="budget-expenses"><h2>Debt</h2>
-            <h2>{statementInfo?.debt}</h2>
+            <h2>-{statementInfo?.debt}</h2>
             <h3>{statementInfo?.tips?.Debt[Math.floor(Math.random() * 4)]}</h3>
           </div>
         </div>

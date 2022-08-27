@@ -77,7 +77,6 @@
 .dashboard-dark-mode {
   @extend .dashboard-light-mode;
 }
-}
 
 .dashboard-display-mode {
   // border:solid 1px black;
@@ -91,7 +90,6 @@
   background-color: #293241;
   background-color: #4c956c;
   background-color: #59cd90;
-<<<<<<< HEAD
 }
 .dashboard-display-toggle {
   width: 32px;
@@ -111,27 +109,23 @@
 }
 .dashboard-dark-mode {
   @extend .dashboard-light-mode;
-=======
->>>>>>> e5930cdf51f61025a8bba8c5e353197f3931f115
 }
 .dashboard-display-toggle {
   width: 32px;
   height: 32px;
   position: absolute;
-  right: .45rem;
+  right: 0.45rem;
   border-radius: 50%;
-  border:1px solid hsla(0,0%,58%,.74);
+  border: 1px solid hsla(0, 0%, 58%, 0.74);
   content: " ";
   display: flex;
   background-color: white;
   z-index: 2;
 }
-.dashboard-light-mode{
-  color:black;
+.dashboard-light-mode {
+  color: black;
   font-size: 1.3rem;
 }
 .dashboard-dark-mode {
-  @extend .dashboard-light-mode
-
+  @extend .dashboard-light-mode;
 }
-

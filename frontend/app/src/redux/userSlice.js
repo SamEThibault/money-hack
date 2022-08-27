@@ -37,7 +37,11 @@ export const userSlice = createSlice({
     setEStatement:(state, {payload})=>{
       state.eStatement = payload;
       console.log(state.eStatement)
-    }
+    },
+    setEStatement:(state, {payload})=>{
+      state.eStatement = payload;
+      console.log(state.eStatement)
+    },
     setEStatement:(state, {payload})=>{
       state.eStatement = payload;
       console.log(state.eStatement)

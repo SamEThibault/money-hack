@@ -48,7 +48,7 @@ class Budget():
         return TFSA
 
     def RRSP(self, salary, savings):
-        if savings >= 0.18*salary or savings > 27830 : 
+        if savings > 0.18*salary or savings > 27830 : 
             RRSP = 27830
         else:
             RRSP = savings

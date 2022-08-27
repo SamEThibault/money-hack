@@ -9,10 +9,6 @@ import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { Pie } from "react-chartjs-2";
 function Dashboard({ pieData, barData }) {
-  fetch("http://127.0.0.1:5000/file")
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log("error", error));
 
   return (
     <div className="dashboard-container">

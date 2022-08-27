@@ -34,22 +34,30 @@ function Financial_Info() {
     urlencoded.append("salary", salary);
     urlencoded.append("debt", personalDebt);
 
-    formData.append("file", this.files[0], eStatement);
+    var input = document.querySelector('input[type="file"]')
+    formData.append("file", input.files[0], input);
     formData.append("name", userName);
 
-    var requestOptions = {
+    var requestOptionsAddInfo = {
       method: "POST",
       headers: myHeaders,
       body: urlencoded,
       redirect: "follow",
     };
 
+    var requestOptionsFile = {
+      method: "POST",
+      headers: myHeaders,
+      body: formData,
+      redirect: "follow",
+    }
+
     // Sends the user's personal info then sends the e-statement
-    fetch("http://127.0.0.1:5000/addinfo", requestOptions)
+    fetch("http://127.0.0.1:5000/addinfo", requestOptionsAddInfo)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .then(() => {
-        fetch("http://127.0.0.1:5000/file")
+        fetch("http://127.0.0.1:5000/file", requestOptionsFile)
           .then((response) => response.text())
           .then((result) => console.log(result));
       })

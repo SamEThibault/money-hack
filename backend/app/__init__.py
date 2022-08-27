@@ -39,7 +39,7 @@ def getFile():
     f.save('temp/' + f.filename)
 
     name = request.form.get("name")
-
+    print(name)
     # call Logan's function (to parse the text file)
     parse = Parse().parse()
     user = User.update(
@@ -107,7 +107,7 @@ def signin():
 @app.route("/addinfo", methods=["POST"])
 def addInfo():
     name = request.form["name"]
-
+    print("ADD INFO NAME: " + name)
     user = User.update(
         age = request.form["age"],
         salary = request.form["salary"],

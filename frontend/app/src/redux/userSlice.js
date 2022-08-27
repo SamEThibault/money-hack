@@ -10,6 +10,7 @@ export const userSlice = createSlice({
     salary: "",
     personalDebt: "",
     eStatement: "",
+    loginVerify: false
   },
   reducers: {
     setUserName: (state, { payload }) => {
@@ -34,11 +35,14 @@ export const userSlice = createSlice({
     setEStatement:(state, {payload})=>{
       state.eStatement = payload;
       console.log(state.eStatement)
+    },
+    setLoginVerify: (state, { payload }) => {
+      state.loginVerify = payload;
     }
   },
 });
 
 //Action creators are generated for each case reducer function
-export const { setUserName, setPassword, setConfirmPassword, setAge, setSalary, setPersonalDebt, setEStatement} =
+export const { setUserName, setPassword, setConfirmPassword, setAge, setSalary, setPersonalDebt, setEStatement, setLoginVerify} =
   userSlice.actions;
 export default userSlice.reducer;

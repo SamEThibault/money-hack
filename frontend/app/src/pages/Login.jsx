@@ -9,13 +9,14 @@ import {
   setPassword,
   setPersonalDebt,
   setSalary,
+  setLoginVerify
 } from "../redux/userSlice";
 import { numbersOnly } from "../utils/formValidation";
 import "../styles/signup.scss";
 import {Link, useNavigate} from 'react-router-dom'
 
 function Dashboard() {
-  const { userName, password} = useSelector(({ user }) => user);
+  const { userName, password, loginVerify} = useSelector(({ user }) => user);
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -40,6 +41,8 @@ function Dashboard() {
       .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
+
+    dispatch(setLoginVerify(true))
     
     navigate("/dashboard")
   };

@@ -53,7 +53,7 @@ def getFile():
 
     user = User.get_or_none(User.username == name)
     if user != None:
-        budget = Budget().budget(int(user.salary))
+        budget = Budget().budget(int(user.salary), int(user.debt))
         discretionary = budget[0]
         TFSA = budget[1]
         RRSP = budget[2]

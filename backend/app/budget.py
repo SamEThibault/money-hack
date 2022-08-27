@@ -14,15 +14,15 @@ class Budget():
 
         DEBT = self.DEBT(debt, savings)
         if salary >= 100000:
-            RRSP = self.RRSP(salary, savings)
-            TFSA = self.TFSA(savings-RRSP)
+            RRSP = self.RRSP(salary, savings - DEBT)
+            TFSA = self.TFSA(savings-RRSP-DEBT)
             tips = self.invest_communicator.tips_high()
         else:
-            TFSA = self.TFSA(savings)
-            RRSP = self.RRSP(salary, (savings-TFSA))
+            TFSA = self.TFSA(savings-DEBT)
+            RRSP = self.RRSP(salary, (savings-TFSA-DEBT))
             tips = self.invest_communicator.tips_low()
 
-        leftover = savings - TFSA - RRSP
+        leftover = savings - TFSA - RRSP - DEBT
 
         discretionary = disposable - savings
         print("Each month you have $%.2f for discretionary spending" % (discretionary/12))
@@ -31,7 +31,7 @@ class Budget():
         print("Leftover $%.2f" % (leftover))
         print(tips['RRSP'] + '\n' + tips['TFSA'])
 
-        return [discretionary/12, TFSA, RRSP, leftover, tips]
+        return [discretionary/12, TFSA, RRSP, leftover, tips, DEBT]
 
     def disposable(self, salary_taxed, salary):
         bills = (salary_taxed*0.5)/12 #28000

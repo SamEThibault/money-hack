@@ -74,5 +74,8 @@ export const {
   setSalary,
   setPersonalDebt,
   setEStatement,
+  setIsLightMode,
+  setLoginVerify,
+  setStatementInfo,
 } = userSlice.actions;
 export default userSlice.reducer;

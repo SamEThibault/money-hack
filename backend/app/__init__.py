@@ -30,21 +30,3 @@ def getFile():
     f = request.files['file']
     f.save('temp/' + f.filename)
     return 'W'
-    
-# var myHeaders = new Headers();
-# myHeaders.append("Disallow", "/not-for-robots.html");
-# myHeaders.append("User-Agent", "*");
-
-# var urlencoded = new URLSearchParams();
-
-# var requestOptions = {
-#   method: 'GET',
-#   headers: myHeaders,
-#   body: urlencoded,
-#   redirect: 'follow'
-# };
-
-# fetch("localhost:5000/", requestOptions)
-#   .then(response => response.text())
-#   .then(result => console.log(result))
-#   .catch(error => console.log('error', error));

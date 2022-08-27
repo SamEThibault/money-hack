@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Nav from "./Nav";
 import Container from "../components/Container";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,6 +19,7 @@ function Dashboard() {
   const { userName, password, loginVerify} = useSelector(({ user }) => user);
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  const [error, setError] = useState('')
 
   const handleSignup = () => {
     var myHeaders = new Headers();
@@ -39,12 +40,18 @@ function Dashboard() {
 
     fetch("http://127.0.0.1:5000/signin", requestOptions)
       .then((response) => response.json())
-      .then((result) => console.log(result))
+      .then((result) => 
+      {
+        if (result.status == 200)
+        {
+          dispatch(setLoginVerify(true))
+          navigate("/dashboard")
+        } else {
+          return setError('Passwords do not match')
+        }
+      })
       .catch((error) => console.log("error", error));
-
-    dispatch(setLoginVerify(true))
-    
-    navigate("/dashboard")
+  
   };
 
   return (

@@ -7,7 +7,6 @@ from app.db import User
 
 from data.parse import Parse
 from app.budget import Budget
-from data.data import DataFormat
 
 load_dotenv()
 app = Flask(__name__)

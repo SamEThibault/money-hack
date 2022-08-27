@@ -32,3 +32,4 @@ class DataFormat():
         amountList = amount.tolist()
         userInfo = {"dates": datesList, "description": descList, "amount": amountList}
         
+        

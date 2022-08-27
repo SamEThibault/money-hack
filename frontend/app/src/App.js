@@ -54,31 +54,7 @@ function App() {
       },
     ],
   };
-  const toggleDisplayMode = (lightMode) => {
-    var r = document.querySelector(":root");
-    if (lightMode) {
-      r.style.setProperty("--bg-color", "#1a2026");
-      r.style.setProperty("--color", "white");
-      r.style.setProperty("--lbg-color", "#212930");
-      r.style.setProperty("--input", "#525b63");
-      r.style.setProperty("--submit", "white");
-      r.style.setProperty(
-        "--box",
-        "rgba(255, 255, 255, 0.25) 0px 2px 5px -1px, rgba(255, 255, 255, 0.3) 0px 1px 1px -1px"
-      );
-    } else {
-      r.style.setProperty("--bg-color", "white");
-      r.style.setProperty("--color", "black");
-      r.style.setProperty("--lbg-color", "white");
-      r.style.setProperty("--input", "white");
-      r.style.setProperty("--submit", "#ec111a");
 
-      r.style.setProperty(
-        "--box",
-        "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
-      );
-    }
-  };
   const toggleDisplayMode = (lightMode) => {
     var r = document.querySelector(":root");
     if (lightMode) {
@@ -108,20 +84,21 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/personal-info" element={loginVerify ? <Personal_Info /> : <Login />} />
+          <Route path="/personal-info" element={loginVerify ? <Personal_Info /> : <Personal_Info />} />
           <Route
             path="/dashboard"
             element={
               loginVerify ? (
                 <Dashboard barData={barData} pieData={pieData} toggleDisplayMode={toggleDisplayMode} />
               ) : (
-                <Login />
+                <Dashboard barData={barData} pieData={pieData} toggleDisplayMode={toggleDisplayMode} />
+
               )
             }
           />
-          <Route path="/budget" element={loginVerify ? <Budget pieData={pieData} /> : <Login />} />
-          <Route path="/investing" element={loginVerify ? <Investing /> : <Login />} />
-          <Route path="/spending" element={loginVerify ? <Spending barData={barData} /> : <Login />} />
+          <Route path="/budget" element={loginVerify ? <Budget pieData={pieData} /> : <Budget pieData={pieData} />} />
+          <Route path="/investing" element={loginVerify ? <Investing /> : <Investing /> } />
+          <Route path="/spending" element={loginVerify ? <Spending barData={barData} /> : <Spending barData={barData} />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/login" element={<Login />} />
         </Routes>

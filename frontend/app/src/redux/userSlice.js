@@ -56,6 +56,7 @@ export const userSlice = createSlice({
     },
     setStatementInfo: (state, { payload }) => {
       state.statementInfo = payload;
+      // console.log(state.statementInfo)
     },
     setLoginVerify: (state, { payload }) => {
       state.loginVerify = payload;

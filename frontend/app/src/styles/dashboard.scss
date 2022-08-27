@@ -90,3 +90,11 @@
     width: 65%;
   }
 }
+.budgeting-links{
+  column-gap:2rem;
+  a{
+    color:var(--color);
+    border:solid 1px var(--color);
+    padding:1rem 2rem; 
+  }
+}

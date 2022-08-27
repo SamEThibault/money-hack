@@ -9,7 +9,7 @@ import {
   setPassword,
   setPersonalDebt,
   setSalary,
-  setLoginVerify,,
+  setLoginVerify,
 } from "../redux/userSlice";
 import { numbersOnly } from "../utils/formValidation";
 import "../styles/signup.scss";

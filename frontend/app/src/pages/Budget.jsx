@@ -16,7 +16,8 @@ function Budget({ pieData }) {
 
         <div className="budget-content">
           <div className="budget-tips row-fs-c">
-            {statementInfo.tips.Budget.map((tip) => (
+            
+            {statementInfo?.tips?.Budget?.map((tip) => (
               <div className="budget-tip">{tip}</div>
             ))}
           </div>
@@ -30,8 +31,8 @@ function Budget({ pieData }) {
           </div>
           
           <div className="budget-expenses"><h2>Debt</h2>
-            <h2>{statementInfo.debt}</h2>
-            <h3>{statementInfo.tips.Debt[Math.floor(Math.random() * 4)]}</h3>
+            <h2>{statementInfo?.debt}</h2>
+            <h3>{statementInfo?.tips?.Debt[Math.floor(Math.random() * 4)]}</h3>
           </div>
         </div>
       </Container>

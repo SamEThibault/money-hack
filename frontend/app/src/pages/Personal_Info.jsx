@@ -20,7 +20,6 @@ function Financial_Info() {
   const { userName, password, confirmPassword, age, personalDebt, salary, eStatement, submitted } =
     useSelector(({ user }) => user);
   const dispatch = useDispatch();
-  dispatch(setStatementInfo(dummy));
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -68,6 +67,7 @@ function Financial_Info() {
         fetch("http://127.0.0.1:5000/file", requestOptionsFile)
           .then((response) => response.json())
           .then((result) => {
+            console.log(result)
             dispatch(setStatementInfo(result));
           });
       })

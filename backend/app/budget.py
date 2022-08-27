@@ -29,7 +29,6 @@ class Budget():
         print("Please invest $%.2f into your TFSA" % (TFSA))
         print("Please invest $%.2f into your RRSP" % (RRSP))
         print("Leftover $%.2f" % (leftover))
-        print(tips['RRSP'] + '\n' + tips['TFSA'])
 
         return [discretionary/12, TFSA, RRSP, leftover, tips, DEBT]
 

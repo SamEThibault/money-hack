@@ -3,6 +3,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { BiMoney } from "react-icons/bi";
 import { AiOutlineLineChart, AiOutlinePieChart } from "react-icons/ai";
 import { BsPersonSquare } from "react-icons/bs";
+import { BiExit } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -87,8 +88,24 @@ function Nav() {
               <motion.div className="nav-underline" layoutId="nav-underline" />
             )}
           </Link>
+          <Link
+            to="/login"
+            exact
+            className={`${
+              location.pathname === "/login" ? "active-link" : ""
+            } row-fs-c personal-link full-w `}
+          >
+            <p className="row-c-c">
+              <BiExit />
+            </p>
+            <p className="row-c-c">Signout</p>
+            {location.pathname === "/login" && (
+              <motion.div className="nav-underline" layoutId="nav-underline" />
+            )}
+          </Link>
         </ul>
       </div>
+      <div></div>
       <div className="nav-footer">
         <p>2022 All Rights Reserved</p>
       </div>

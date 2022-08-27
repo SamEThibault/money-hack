@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toggleDisplayMode } from "../App";
 
 export const userSlice = createSlice({
   name: "user",
@@ -74,5 +75,8 @@ export const {
   setSalary,
   setPersonalDebt,
   setEStatement,
+  setIsLightMode,
+  setLoginVerify,
+  setStatementInfo,
 } = userSlice.actions;
 export default userSlice.reducer;

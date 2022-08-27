@@ -5,10 +5,14 @@
 :root {
   // --bg-color: blue;
   --bg-color: white;
-  --lbg-color: lightblue;
+  --lbg-color: rgb(223, 223, 223);
   // --color: yellow;
   --color: black;
   --rcolor: #ec111a;
+  // --input: white;
+  --input: #525b63;
+  --box: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  --submit: #ec111a;
 }
 body {
   font-family: "Quicksand", sans-serif;

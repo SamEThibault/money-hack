@@ -2,13 +2,13 @@
   width: clamp(220px, 40vw, 270px);
   /* From https://css.glass */
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
+  // border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   justify-content: space-between;
-  background-color: --bg-color;
+  background-color: var(--lbg-color);
   position: relative;
 }
 .nav-content {
@@ -26,7 +26,7 @@
     width: 100%;
     column-gap: 1rem;
     // border-right: 3px solid #ec111a;
-    color: --color;
+    color: var(--color);
     text-decoration: none;
   }
   p {
@@ -46,8 +46,11 @@
   width: 4px;
   height: 100%;
   position: absolute;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   right: 0;
   background-color: #ec111a;
 }
 
+.nav-footer {
+  color: var(--color);
+}

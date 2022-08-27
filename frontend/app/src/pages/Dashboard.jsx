@@ -2,7 +2,6 @@ import React from "react";
 import Module from "../components/Module";
 import Nav from "./Nav";
 import { AiOutlineSound } from "react-icons/ai";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineModeNight, MdOutlineWbSunny } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Chart from "chart.js/auto";
@@ -11,7 +10,7 @@ import { Pie } from "react-chartjs-2";
 import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsLightMode } from "../redux/userSlice";
-function Dashboard({ pieData, barData }) {
+function Dashboard({ pieData, barData, toggleDisplayMode }) {
   const dispatch = useDispatch();
   const { isLightMode, statementInfo } = useSelector(({ user }) => user);
   const toggleVariants = {
@@ -53,6 +52,7 @@ function Dashboard({ pieData, barData }) {
               className="dashboard-display-mode row-sb-c"
               onClick={() => {
                 dispatch(setIsLightMode(!isLightMode));
+                toggleDisplayMode(!isLightMode)
               }}
               style={{
                 background: isLightMode ? "#8cccab" : "#293241",

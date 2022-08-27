@@ -13,14 +13,15 @@ import {
   setStatementInfo,
 } from "../redux/userSlice";
 import { numbersOnly } from "../utils/formValidation";
-import dummy from "../data/dummy.json"
+import dummy from "../data/dummy.json";
+import { motion } from "framer-motion";
 function Financial_Info() {
   const { userName, password, confirmPassword, age, personalDebt, salary, eStatement } = useSelector(
     ({ user }) => user
   );
   const dispatch = useDispatch();
 
-  console.log(dummy);  
+  console.log(dummy);
   dispatch(setStatementInfo(dummy));
 
   async function handleSubmit(e) {
@@ -77,7 +78,7 @@ function Financial_Info() {
     urlencoded.append("salary", salary);
     urlencoded.append("debt", personalDebt);
 
-    var input = document.querySelector('input[type="file"]')
+    var input = document.querySelector('input[type="file"]');
     formData.append("file", input.files[0]);
     formData.append("name", userName);
 
@@ -115,7 +116,7 @@ function Financial_Info() {
   return (
     <div className="personal-container">
       <Nav />
-
+      <motion.div className="personal-status">{"HLELLO WOLD"}</motion.div>
       <div className="personal-content ">
         <Container classProp={"personal col-fs-c"}>
           <h1>Personal Info</h1>
@@ -126,7 +127,7 @@ function Financial_Info() {
           <form className="personal-inputs full-w" onSubmit={handleSubmit}>
             <div className="info-card personal-age">
               <h2>Age</h2>
-              <input 
+              <input
                 type="text"
                 value={age}
                 placeholder={"0-100"}
@@ -150,7 +151,7 @@ function Financial_Info() {
               <h2>Personal Debt</h2>
               <input
                 type="text"
-                id = "file"
+                id="file"
                 placeholder={"$0.00"}
                 value={personalDebt}
                 onChange={(e) => {
@@ -160,7 +161,7 @@ function Financial_Info() {
             </div>
             <div className="info-card personal-e-statment">
               <h2>Monthly E-Statement</h2>
-              <label className="col-c-c">
+              <label className="info-card-select-file col-c-c">
                 <span>Select File</span>
                 <input
                   id="statement"

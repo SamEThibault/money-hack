@@ -3,7 +3,9 @@ from flask import Flask, request
 from flask_cors import CORS
 from app import test
 from peewee import *
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
@@ -68,19 +70,25 @@ def getFile():
     f = request.files['file']
     f.save('temp/' + f.filename)
 
-    ############
     # call Logan's function (to parse the text file)
+    
     # read the returned dict, add the sums of each category and send them to the User's table
     # call the budgetting / investing calulations
     return 'W'
 
+
 # sign up endpoint: checks to see if name is unique, and adds user to Users table
 @app.route("/signup", methods=["POST"])
 def signup():
-    name = request.form["name"]
-    password = request.form["password"]
+    try:
+        print(request)
+        name = request.form["name"]
+        # password = request.form["password"]
+    except Exception as e:
+        print(e)
+        return {"body" : "Error", "status" : 400}
 
-    q = User.select().where(User.name == name)
+    q = User.select().where(User.username == name)
     # username must be unique, if it already exists, return error
     if q.exists():
         return {"body" : "User already exists!", "status" : 400}

@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import { AiOutlineSound } from "react-icons/ai";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineModeNight, MdOutlineWbSunny } from "react-icons/md";
+import { Link } from "react-router-dom";
 function Dashboard() {
   return (
     <div className="dashboard-container">
@@ -30,16 +31,18 @@ function Dashboard() {
           </div>
         </div>
         {[
-          "budget-container",
-          "category-container",
-          "salary-container",
-          "expenses-container",
-          "invest-container",
-          "graph-container",
-        ].map((moduleClass, i) => (
-          <Module key={i} classProp={moduleClass}>
-            {moduleClass}
-          </Module>
+          { link: "/budget", class: "budget-container" },
+          { link: "/spending", class: "category-container" },
+          { link: "/personal-info", class: "salary-container" },
+          { link: "/personal-info", class: "expenses-container" },
+          { link: "/investing", class: "invest-container" },
+          { link: "/budget", class: "graph-container" },
+        ].map((module, i) => (
+          <Link to={module.link} className={`${module.class} `}>
+            <Module key={i} classProp="full-h-w">
+              {module.class}
+            </Module>
+          </Link>
         ))}
       </div>
     </div>

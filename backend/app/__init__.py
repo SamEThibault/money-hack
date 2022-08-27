@@ -53,18 +53,19 @@ def getFile():
 
     user = User.get_or_none(User.username == name)
     if user != None:
-        budget = Budget().budget(int(user.salary))
+        budget = Budget().budget(int(user.salary), int(user.debt))
         discretionary = budget[0]
         TFSA = budget[1]
         RRSP = budget[2]
         leftover = budget[3]
         tips = budget[4]
+        DEBT = budget[5]
 
         res = {"food" : user.food, "groceries" : user.groceries, 
             "other" : user.other, "entertainment" : user.entertainment,
             "gas" : user.gas, "rent" : user.rent, "bills" : user.bills,
             "discretionary" : discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
-            "leftover" : leftover, "tips" : tips}
+            "leftover" : leftover, "tips" : tips, "debt": DEBT}
         return res
     else:
         return {"body" : "Error", "status" : 400}

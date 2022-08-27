@@ -5,6 +5,11 @@ from app import test
 app = Flask(__name__)
 CORS(app)
 
+categories = {"FOOD" : ["TIM HORTONS", "LE PELE MELE", "LA P'TITE GRENOUILLE", "MAC'S SUSHI", "Shawarma Palace Rideau", "A&W", "CAGE GATINEAU", "STARBUCKS COFFEE"],
+             "GROCERIES" : ["DOLLARAMA", "WAL-MART SUPERCENTER", "RUSSELL FOODLAND"], 
+             "OTHER": ["IMPERIAL BARBER SHOP", "HAWKINS CAR WASH", "STITCH IT"], 
+             "ENTERTAINMENT" : [], 
+             "GAS" : ["MR. GAS", "SHELL", "PETROCAN-500"]}
 
 @app.route("/", methods=["POST"])
 def getName():

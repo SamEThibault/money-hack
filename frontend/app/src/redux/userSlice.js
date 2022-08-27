@@ -12,9 +12,6 @@ export const userSlice = createSlice({
     eStatement: "",
     age: "",
     loginVerify: false,
-    salary: "",
-    personalDebt: "",
-    eStatement: "",
     navUrl: "",
     isLightMode: false,
     statementInfo: {},
@@ -74,5 +71,8 @@ export const {
   setSalary,
   setPersonalDebt,
   setEStatement,
+  setIsLightMode,
+  setLoginVerify,
+  setStatementInfo,
 } = userSlice.actions;
 export default userSlice.reducer;

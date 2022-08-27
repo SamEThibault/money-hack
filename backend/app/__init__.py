@@ -60,12 +60,20 @@ def getFile():
         leftover = budget[3]
         tips = budget[4]
         DEBT = budget[5]
+        spendingmsg = ""
+
+        if user.food > 100:
+            spendingmsg = "wow you're a fatass"
+        elif user.entertainment > 200:
+            spendingmsg = "chill bro"
+        elif user.leftover > 2000:
+            spendingmsg = "go on vacation or smt"
 
         res = {"food" : user.food, "groceries" : user.groceries, 
             "other" : user.other, "entertainment" : user.entertainment,
             "gas" : user.gas, "rent" : user.rent, "bills" : user.bills,
             "discretionary" : discretionary, "TFSA" : TFSA, "RRSP" : RRSP, 
-            "leftover" : leftover, "tips" : tips, "debt": DEBT}
+            "leftover" : leftover, "tips" : tips, "debt": DEBT, "spendingMessage": spendingmsg}
         return res
     else:
         return {"body" : "Error", "status" : 400}

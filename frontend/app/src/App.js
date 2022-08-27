@@ -8,8 +8,10 @@ import Signup from "./pages/Signup";
 import Investing from "./pages/Investing";
 import Spending from "./pages/Spending";
 import Login from "./pages/Login";
+import { useSelector, useDispatch } from "react-redux";
 function App() {
   const labels = ["Bills", "Discretionary", "Entertainment", "Food", "Gas", "Groceries", "rent"];
+  const {loginVerify} = useSelector(({ user }) => user);
   const barData = {
     labels: labels,
     datasets: [
@@ -37,11 +39,11 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/personal-info" element={<Personal_Info />} />
-          <Route path="/dashboard" element={<Dashboard barData={barData} pieData={pieData} />} />
-          <Route path="/budget" element={<Budget pieData={pieData} />} />
-          <Route path="/investing" element={<Investing />} />
-          <Route path="/spending" element={<Spending barData={barData} />} />
+          <Route path="/personal-info" element={loginVerify ? (<Personal_Info />) : (<Login />)} />
+          <Route path="/dashboard" element={loginVerify ? (<Dashboard barData={barData} pieData={pieData} />) : (<Login />)} />
+          <Route path="/budget" element={loginVerify ? (<Budget pieData={pieData} />) : (<Login />)} />
+          <Route path="/investing" element={loginVerify ? (<Investing />) : (<Login />)} />
+          <Route path="/spending" element={loginVerify ? (<Spending barData={barData} />) : (<Login />)} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/login" element={<Login />} />
         </Routes>

@@ -74,7 +74,7 @@ function Financial_Info() {
     urlencoded.append("debt", personalDebt);
 
     var input = document.querySelector('input[type="file"]')
-    formData.append("file", input.files[0], input);
+    formData.append("file", input.files[0]);
     formData.append("name", userName);
 
     var requestOptionsAddInfo = {
@@ -117,7 +117,7 @@ function Financial_Info() {
           <form className="personal-inputs full-w" onSubmit={handleSubmit}>
             <div className="info-card personal-age">
               <h2>Age</h2>
-              <input
+              <input 
                 type="text"
                 value={age}
                 onChange={(e) => {
@@ -139,6 +139,7 @@ function Financial_Info() {
               <h2>Personal Debt</h2>
               <input
                 type="text"
+                id = "file"
                 value={personalDebt}
                 onChange={(e) => {
                   dispatch(setPersonalDebt(numbersOnly(e.target.value)));

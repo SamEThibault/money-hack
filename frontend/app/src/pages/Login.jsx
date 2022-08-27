@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Nav from "./Nav";
 import Container from "../components/Container";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,15 +9,17 @@ import {
   setPassword,
   setPersonalDebt,
   setSalary,
+  setLoginVerify
 } from "../redux/userSlice";
 import { numbersOnly } from "../utils/formValidation";
 import "../styles/signup.scss";
 import {Link, useNavigate} from 'react-router-dom'
 
 function Dashboard() {
-  const { userName, password} = useSelector(({ user }) => user);
+  const { userName, password, loginVerify} = useSelector(({ user }) => user);
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  const [error, setError] = useState('')
 
   const handleSignup = () => {
     var myHeaders = new Headers();
@@ -38,10 +40,18 @@ function Dashboard() {
 
     fetch("http://127.0.0.1:5000/signin", requestOptions)
       .then((response) => response.json())
-      .then((result) => console.log(result))
+      .then((result) => 
+      {
+        if (result.status == 200)
+        {
+          dispatch(setLoginVerify(true))
+          navigate("/dashboard")
+        } else {
+          return setError('Passwords do not match')
+        }
+      })
       .catch((error) => console.log("error", error));
-    
-    navigate("/dashboard")
+  
   };
 
   return (

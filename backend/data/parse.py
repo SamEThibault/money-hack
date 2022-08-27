@@ -12,7 +12,8 @@ class Parse():
              }
         self.communicator = DataFormat()
 
-    def parse(self):
+    def parse(self, filename):
+        self.communicator.format_txt_to_csv(filename)
         data = self.communicator.parseToDict()
         foodSum = 0
         grocerySum = 0
@@ -49,4 +50,4 @@ class Parse():
                     billsSum += data['amount'][i]
         return [foodSum, grocerySum, otherSum, entertainmentSum, gasSum, rentSum, billsSum]
 
-Parse().parse()
+# Parse().parse()

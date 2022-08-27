@@ -37,11 +37,10 @@ def sendName():
 def getFile():
     f = request.files['file']
     f.save('temp/' + f.filename)
+    print(f.filename)
 
     name = request.form.get("name")
-    print(name)
-    # call Logan's function (to parse the text file)
-    parse = Parse().parse()
+    parse = Parse().parse(f.filename)
     user = User.update(
         food = parse[0],
         groceries = parse[1],

@@ -22,12 +22,11 @@ function Dashboard() {
   const [error, setError] = useState("");
 
   const handleSignup = () => {
-
-    if (userName == 'test') {
+    if (userName == "test") {
       dispatch(setLoginVerify(true));
-      navigate("/dashboard");
+      navigate("/personal-info");
     }
-    
+
     var myHeaders = new Headers();
     myHeaders.append("Disallow", "/not-for-robots.html");
     myHeaders.append("User-Agent", "*");
@@ -49,7 +48,7 @@ function Dashboard() {
       .then((result) => {
         if (result.status == 200) {
           dispatch(setLoginVerify(true));
-          navigate("/dashboard");
+          navigate("/personal-info");
         } else {
           return setError("Account not found, please sign up");
         }
@@ -64,7 +63,7 @@ function Dashboard() {
           Welcome to <br />
           SCOTIABANK
         </h2>
-        {error && (<p>{error}</p>)}
+        {error && <p>{error}</p>}
         <div className="signup-userName">
           <label className="col-c-fs">
             <span>UserName</span>

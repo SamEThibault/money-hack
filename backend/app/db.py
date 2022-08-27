@@ -16,17 +16,17 @@ print(db)
 class User(Model):
     password = CharField()
     username = CharField()
-    age = CharField()
-    salary = CharField()
-    debt = CharField()
+    age = IntegerField(default=0)
+    salary = DoubleField(default=0)
+    debt = DoubleField(default=0)
 
-    groceries = CharField()
-    food = CharField()
-    gas = CharField()
-    entertainment = CharField()
-    other = CharField()
-    rent = CharField()
-    bills = CharField() # sum of cellphone, utilities, and internet, (maybe car payments)
+    groceries = DoubleField(default=0)
+    food = DoubleField(default=0)
+    gas = DoubleField(default=0)
+    entertainment = DoubleField(default=0)
+    other = DoubleField(default=0)
+    rent = DoubleField(default=0)
+    bills = DoubleField(default=0) # sum of cellphone, utilities, and internet, (maybe car payments)
 
     class Meta:
         database = db

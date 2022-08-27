@@ -4,44 +4,11 @@ from flask_cors import CORS
 from app import test
 from peewee import *
 from dotenv import load_dotenv
+from app.db import User
 
 load_dotenv()
 app = Flask(__name__)
 CORS(app)
-
-
-############ DB #############
-db = MySQLDatabase(
-    os.getenv("MYSQL_DATABASE"),
-    user=os.getenv("MYSQL_USER"),
-    password=os.getenv("MYSQL_PASSWORD"),
-    host=os.getenv("MYSQL_HOST"),
-    port=3306
-)
-print(db)
-
-class User(Model):
-    password = CharField()
-    username = CharField()
-    age = CharField()
-    salary = CharField()
-    debt = CharField()
-
-    groceries = CharField()
-    food = CharField()
-    gas = CharField()
-    entertainment = CharField()
-    other = CharField()
-    rent = CharField()
-    bills = CharField() # sum of cellphone, utilities, and internet, (maybe car payments)
-
-    class Meta:
-        database = db
-
-db.connect()
-db.create_tables([User])
-
-############################
 
 categories = {"FOOD" : ["TIM HORTONS", "LE PELE MELE", "LA P'TITE GRENOUILLE", "MAC'S SUSHI", "Shawarma Palace Rideau", "A&W", "CAGE GATINEAU", "STARBUCKS COFFEE"],
              "GROCERIES" : ["DOLLARAMA", "WAL-MART SUPERCENTER", "RUSSELL FOODLAND"], 
@@ -55,17 +22,14 @@ def getName():
     try:
         name = request.form["name"]
         print("NAME: " + name)
-        test.UnitTest().test(name)
         return name
     except Exception as e:
         print(e)
-
-
+        return "Error"
 
 @app.route("/", methods=["GET"])
 def sendName():
     return {"name": "bozo cheese"}
-
 
 @app.route("/file", methods=["POST"])
 def getFile():
@@ -73,7 +37,7 @@ def getFile():
     f.save('temp/' + f.filename)
 
     # call Logan's function (to parse the text file)
-
+    
     # read the returned dict, add the sums of each category and send them to the User's table
     # call the budgetting / investing calulations
     return 'W'
@@ -85,7 +49,7 @@ def signup():
     try:
         print(request)
         name = request.form["name"]
-        # password = request.form["password"]
+        password = request.form["password"]
     except Exception as e:
         print(e)
         return {"body" : "Error", "status" : 400}
